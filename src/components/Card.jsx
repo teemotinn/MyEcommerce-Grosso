@@ -1,23 +1,29 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { colors } from '../global/colors'
 
-export default function Card(
-    { children }
-) {
+export default function Card({
+    children,
+    additionalStyle = [],
+    onPress,
+}) {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity
+            disabled={!onPress}
+            onPress={onPress}
+            style={[styles.container, additionalStyle]}
+        >
             {children}
-        </View>
+        </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 40,
-        width: 240,
+        paddingVertical: 6,
+        paddingHorizontal: 12,
+        width: '100%',
+        alignSelf: 'stretch',
         borderWidth: 0.5,
         backgroundColor: colors.SECONDARY,
         borderColor: 'black',

@@ -2,11 +2,14 @@ import { StyleSheet, Text } from 'react-native'
 import React from 'react'
 import Card from './Card'
 
-export default function CategoryItem(
-    { item }
-) {
+export default function CategoryItem({
+    item,
+    setCategorySelected
+}) {
     return (
-        <Card>
+        <Card
+            onPress={() => setCategorySelected(item)}
+        >
             <Text style={styles.textCategory}>
                 {item}
             </Text>
@@ -16,6 +19,8 @@ export default function CategoryItem(
 
 const styles = StyleSheet.create({
     textCategory: {
-        fontSize: 18
-    }
+        width: 180,
+        fontSize: 18,
+        fontFamily: 'Nunito'
+    },
 })
