@@ -4,11 +4,11 @@ import Card from './Card'
 
 export default function CategoryItem({
     item,
-    setCategorySelected
+    navigation
 }) {
     return (
         <Card
-            onPress={() => setCategorySelected(item)}
+            onPress={() => navigation.navigate('ItemListCategory', { category: item })}
         >
             <Text style={styles.textCategory}>
                 {item}

@@ -5,18 +5,17 @@ import CategoryItem from '../components/CategoryItem'
 import Header from '../components/Header'
 
 export default function Home({
-    setCategorySelected
+    navigation,
+    route
 }) {
     return (
         <View style={{ flex: 1 }}>
-            <Header
-                title={'Home'}
-            />
+            <Header title={'Inicio'}/>
             <View style={styles.container}>
                 <FlatList
                     data={categories}
                     keyExtractor={category => category}
-                    renderItem={({ item }) => CategoryItem({ item, setCategorySelected })}
+                    renderItem={({ item }) => <CategoryItem item={item} navigation={navigation} />}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{
                         justifyContent: 'center',

@@ -6,9 +6,11 @@ import Search from '../components/Search'
 import Header from '../components/Header'
 
 const ItemListCategory = ({
-    category,
-    setCategory
+    navigation,
+    route
 }) => {
+    const { category } = route.params
+
     const [products, setProducts] = useState([])
     const [keyword, setKeyword] = useState("")
     const [keywordError, setKeywordError] = useState("")
@@ -42,10 +44,7 @@ const ItemListCategory = ({
 
     return (
         <View style={{ flex: 1 }}>
-            <Header
-                title={'Categorías'}
-                goBack={() => setCategory("")}
-            />
+            <Header title={'Inicio'} goBack={navigation.goBack} />
             <View style={styles.container}>
                 <Search
                     onSearch={onSearch}

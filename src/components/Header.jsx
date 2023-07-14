@@ -13,7 +13,7 @@ export default function Header({
         <View style={styles.container}>
             <StatusBar style="light" />
             {goBack &&
-                <Pressable onPress={goBack}>
+                <Pressable onPress={() => { goBack() }}>
                     <AntDesign name="back" style={{ marginEnd: 8 }} size={24} color="black" />
                 </Pressable>
             }
