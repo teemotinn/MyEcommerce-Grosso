@@ -5,6 +5,7 @@ import Home from '../screens/Home'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { colors } from '../global/colors'
+import ItemDetail from '../screens/ItemDetail'
 //import Header from '../components/Header'
 
 export default function Navigator() {
@@ -34,6 +35,10 @@ export default function Navigator() {
                     <Stack.Screen
                         name='ItemListCategory'
                         component={ItemListCategory}
+                    />
+                    <Stack.Screen
+                        name='Detail'
+                        component={ItemDetail}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
