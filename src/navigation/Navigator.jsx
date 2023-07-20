@@ -6,7 +6,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { colors } from '../global/colors'
 import ItemDetail from '../screens/ItemDetail'
-import Header from '../components/Header'
 
 export default function Navigator() {
     const Stack = createNativeStackNavigator()
