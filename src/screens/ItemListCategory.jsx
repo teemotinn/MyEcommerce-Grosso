@@ -44,7 +44,7 @@ const ItemListCategory = ({
 
     return (
         <View style={{ flex: 1 }}>
-            <Header title={'Inicio'} goBack={navigation.goBack} />
+            <Header title={'Productos'} goBack={navigation.goBack} />
             <View style={styles.container}>
                 <Search
                     onSearch={onSearch}
@@ -54,7 +54,7 @@ const ItemListCategory = ({
                 <FlatList
                     data={products}
                     keyExtractor={product => product.id}
-                    renderItem={({ item }) => ProductItem({ item })}
+                    renderItem={({ item }) => <ProductItem item={item} navigation={navigation} />}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{
                         justifyContent: 'center',

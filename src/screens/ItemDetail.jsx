@@ -7,7 +7,8 @@ import {
     useWindowDimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import allProducts from "../Data/products.json";
+import allProducts from "../data/products.json";
+import Header from "../components/Header";
 
 const ItemDetail = ({
     navigation,
@@ -33,8 +34,8 @@ const ItemDetail = ({
     }, [idSelected]);
 
     return (
-        <View>
-            <Button onPress={() => navigation.goBack()} title="Go back" />
+        <View style={{ flex: 1 }}>
+            <Header goBack={navigation.goBack} />
             {product ? (
                 <View
                     style={
@@ -85,5 +86,6 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
+        fontFamily:'Nunito'
     }
 });

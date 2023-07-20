@@ -2,14 +2,18 @@ import { Image, StyleSheet, Text } from 'react-native'
 import React from 'react'
 import Card from './Card'
 
-export default function ProductItem({ item }) {
+export default function ProductItem({ 
+    item, 
+    navigation 
+}) {
     return (
         <Card
             additionalStyle={styles.additionalStylesCard}
+            onPress={() => navigation.navigate('ProductDetail', {productId: item.id})}
         >
             <Text
                 style={styles.productTitle}>
-                {item.title}
+                {item.title}sss
             </Text>
             <Image
                 resizeMode='cover'

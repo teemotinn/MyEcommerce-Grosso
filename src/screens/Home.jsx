@@ -6,7 +6,6 @@ import Header from '../components/Header'
 
 export default function Home({
     navigation,
-    route
 }) {
     return (
         <View style={{ flex: 1 }}>
