@@ -1,37 +1,33 @@
 import { StyleSheet, SafeAreaView, Platform, StatusBar } from 'react-native'
 import React from 'react'
-import ItemListCategory from '../screens/ItemListCategory'
-import Home from '../screens/Home'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { colors } from '../global/colors'
-import ItemDetail from '../screens/ItemDetail'
+import ShopStack from './ShopStack'
+import CartStack from './CartStack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 export default function Navigator() {
-    const Stack = createNativeStackNavigator()
+    const Tab = createBottomTabNavigator()
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar style="light" translucent />
             <NavigationContainer>
-                <Stack.Navigator
-                    initialRouteName='Home'
+                <Tab.Navigator
                     screenOptions={{
-                        headerShown: false
+                        headerShown: false,
+                        tabBarShowLabel:false,
+                        tabBarStyle: styles.tabBar
                     }}
                 >
-                    <Stack.Screen
-                        name='Home'
-                        component={Home}
+                    <Tab.Screen
+                        name='Shop'
+                        component={ShopStack}
                     />
-                    <Stack.Screen
-                        name='ItemListCategory'
-                        component={ItemListCategory}
+                    <Tab.Screen
+                        name='Cart'
+                        component={CartStack}
                     />
-                    <Stack.Screen
-                        name='ProductDetail'
-                        component={ItemDetail}
-                    />
-                </Stack.Navigator>
+                </Tab.Navigator>
             </NavigationContainer>
         </SafeAreaView>
     )
@@ -42,5 +38,16 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.BACKGROUND,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+    },
+    tabBar:{
+        backgroundColor: colors.PRIMARY,
+        shadowColor:'black',
+        elevation:4,
+        position:'absolute',
+        bottom:25,
+        right:20,
+        left:20,
+        borderRadius:15,
+        height:90
     }
 })

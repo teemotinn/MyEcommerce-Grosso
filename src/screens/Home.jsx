@@ -9,7 +9,7 @@ export default function Home({
 }) {
     return (
         <View style={{ flex: 1 }}>
-            <Header title={'Inicio'}/>
+            <Header title={'Home'}/>
             <View style={styles.container}>
                 <FlatList
                     data={categories}

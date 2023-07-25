@@ -44,7 +44,7 @@ const ItemListCategory = ({
 
     return (
         <View style={{ flex: 1 }}>
-            <Header title={'Productos'} goBack={navigation.goBack} />
+            <Header title={'Products'} goBack={navigation.goBack} />
             <View style={styles.container}>
                 <Search
                     onSearch={onSearch}
