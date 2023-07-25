@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react"
 import {
     Button,
     Image,
@@ -5,10 +6,10 @@ import {
     Text,
     View,
     useWindowDimensions,
-} from "react-native";
-import React, { useEffect, useState } from "react";
-import allProducts from "../data/products.json";
-import Header from "../components/Header";
+} from "react-native"
+
+import allProducts from "../data/products.json"
+import Header from "../components/Header"
 
 const ItemDetail = ({
     navigation,

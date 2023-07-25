@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
-import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+
 import { colors } from '../global/colors'
 
 export default function Search({
@@ -19,10 +20,10 @@ export default function Search({
                     onChangeText={setKeyword}
                 />
                 <Pressable style={styles.toolButton} onPress={() => onSearch(keyword)}>
-                    <FontAwesome name="search" size={22} color="black" />
+                    <MaterialCommunityIcons name="magnify" size={24} color="black" />
                 </Pressable>
                 <Pressable style={styles.toolButton} onPress={() => onErase()}>
-                    <FontAwesome5 name="eraser" size={22} color="black" />
+                    <MaterialCommunityIcons name="eraser" size={24} color="black" />
                 </Pressable>
             </View>
 

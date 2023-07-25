@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native';
-import { useFonts } from 'expo-font';
+import { StyleSheet } from 'react-native'
+import { useFonts } from 'expo-font'
 import Navigator from './src/navigation/Navigator'
-import { Provider } from 'react-redux';
-import store from './src/store/store';
+import { Provider } from 'react-redux'
+import store from './src/store/store'
 
 
 export default function App() {

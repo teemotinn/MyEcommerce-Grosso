@@ -1,5 +1,6 @@
-import { Image, StyleSheet, Text } from 'react-native'
 import React from 'react'
+import { Image, StyleSheet, Text } from 'react-native'
+
 import Card from './Card'
 
 export default function ProductItem({ 

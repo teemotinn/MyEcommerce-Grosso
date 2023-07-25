@@ -1,5 +1,6 @@
-import { StyleSheet, View, FlatList } from 'react-native'
 import React from 'react'
+import { StyleSheet, View, FlatList } from 'react-native'
+
 import categories from '../data/categories.json'
 import CategoryItem from '../components/CategoryItem'
 import Header from '../components/Header'

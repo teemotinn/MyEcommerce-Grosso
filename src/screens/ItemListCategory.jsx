@@ -1,5 +1,6 @@
-import { FlatList, StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { FlatList, StyleSheet, View } from 'react-native'
+
 import ProductItem from '../components/ProductItem'
 import productsData from '../data/products.json'
 import Search from '../components/Search'

@@ -1,10 +1,14 @@
-import { StyleSheet, SafeAreaView, Platform, StatusBar } from 'react-native'
 import React from 'react'
+import { StyleSheet, SafeAreaView, Platform, StatusBar, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
-import { colors } from '../global/colors'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import ShopStack from './ShopStack'
 import CartStack from './CartStack'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import OrderStack from './OrderStack'
+
+import { colors } from '../global/colors'
 
 export default function Navigator() {
     const Tab = createBottomTabNavigator()
@@ -15,18 +19,49 @@ export default function Navigator() {
                 <Tab.Navigator
                     screenOptions={{
                         headerShown: false,
-                        tabBarShowLabel:false,
+                        tabBarShowLabel: false,
                         tabBarStyle: styles.tabBar
                     }}
                 >
                     <Tab.Screen
                         name='Shop'
                         component={ShopStack}
+                        options={{
+                            tabBarIcon: ({ focused }) => {
+                                return (
+                                    <View>
+                                        <MaterialCommunityIcons name="store" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                    </View>
+                                )
+                            }
+                        }}
                     />
                     <Tab.Screen
                         name='Cart'
                         component={CartStack}
+                        options={{
+                            tabBarIcon: ({ focused }) => {
+                                return (
+                                    <View>
+                                       <MaterialCommunityIcons name="cart" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                    </View>
+                                )
+                            }
+                        }}
                     />
+                    <Tab.Screen
+                    name='Orders'
+                    component={OrderStack}
+                    options={{
+                        tabBarIcon: ({focused}) => {
+                            return (
+                                <View>
+                                    <MaterialCommunityIcons name="format-list-bulleted" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                </View>
+                            )
+                        }
+                    }}
+                />
                 </Tab.Navigator>
             </NavigationContainer>
         </SafeAreaView>
@@ -37,17 +72,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.BACKGROUND,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
-    tabBar:{
+    tabBar: {
         backgroundColor: colors.PRIMARY,
-        shadowColor:'black',
-        elevation:4,
-        position:'absolute',
-        bottom:25,
-        right:20,
-        left:20,
-        borderRadius:15,
-        height:90
+        shadowColor: 'black',
+        elevation: 4,
+        height: '10%'
     }
 })

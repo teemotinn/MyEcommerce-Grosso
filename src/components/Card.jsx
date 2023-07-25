@@ -1,5 +1,6 @@
-import { StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+
 import { colors } from '../global/colors'
 
 export default function Card({

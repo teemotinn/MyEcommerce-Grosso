@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import ItemListCategory from '../screens/ItemListCategory'
@@ -22,10 +22,20 @@ const ShopStack = () => {
             <Stack.Screen
                 name='ItemListCategory'
                 component={ItemListCategory}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_right'
+                }}
             />
             <Stack.Screen
                 name='ProductDetail'
                 component={ItemDetail}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_right'
+                }}
             />
         </Stack.Navigator>
     )

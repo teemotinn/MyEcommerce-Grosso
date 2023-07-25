@@ -1,7 +1,8 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+
 import { colors } from '../global/colors'
-import { AntDesign } from '@expo/vector-icons'
 
 export default function Header({
     title,
@@ -11,7 +12,7 @@ export default function Header({
         <View style={styles.container}>
             {goBack &&
                 <Pressable onPress={() => { goBack() }}>
-                    <AntDesign name="back" style={{ marginEnd: 8 }} size={24} color="black" />
+                    <MaterialCommunityIcons name="chevron-left" size={34} color="black" style={styles.icon} />
                 </Pressable>
             }
             <Text style={styles.title}>{title}</Text>
@@ -21,7 +22,7 @@ export default function Header({
 
 const styles = StyleSheet.create({
     container: {
-        //height: '10%',
+        height: '8%',
         paddingHorizontal: 18,
         paddingVertical: 10,
         backgroundColor: colors.PRIMARY,
@@ -31,5 +32,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontFamily: 'NunitoBold'
+    },
+    icon: {
+        marginEnd: 8
     }
 })
