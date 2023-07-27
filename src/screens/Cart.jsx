@@ -6,8 +6,8 @@ import CartItem from '../components/CartItem';
 import Header from '../components/Header';
 
 const Cart = () => {
-  const total = CartData.reduce((acumulador, currentItem) => acumulador += currentItem.price * currentItem.quantity, 0)
-
+  const total = CartData.reduce((acc, currentItem) => acc += currentItem.price * currentItem.quantity, 0)
+    
   return (
     <View style={{ flex: 1 }}>
       <Header title={'Cart'} />

@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import ItemListCategory from '../screens/ItemListCategory'
+import ItemListCategory from '../screens/ListCategory'
 import Home from '../screens/Home'
-import ItemDetail from '../screens/ItemDetail'
+import ItemDetail from '../screens/ProductDetails'
 
 const ShopStack = () => {
     const Stack = createNativeStackNavigator()

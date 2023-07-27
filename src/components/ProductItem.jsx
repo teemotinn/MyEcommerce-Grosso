@@ -2,15 +2,24 @@ import React from 'react'
 import { Image, StyleSheet, Text } from 'react-native'
 
 import Card from './Card'
+import { setSelectedProductId } from '../features/shop/shopSlice'
+import { useDispatch } from 'react-redux'
 
-export default function ProductItem({ 
-    item, 
-    navigation 
+export default function ProductItem({
+    item,
+    navigation
 }) {
+    const dispatch = useDispatch()
+
+    const onSelectProduct = () => {
+        dispatch(setSelectedProductId(item.id))
+        navigation.navigate('ProductDetail')
+    }
+
     return (
         <Card
             additionalStyle={styles.additionalStylesCard}
-            onPress={() => navigation.navigate('ProductDetail', {productId: item.id})}
+            onPress={onSelectProduct}
         >
             <Text
                 style={styles.productTitle}>
@@ -28,7 +37,7 @@ export default function ProductItem({
 const styles = StyleSheet.create({
     productTitle: {
         width: '60%',
-        fontFamily:'Nunito'
+        fontFamily: 'Nunito'
     },
     image: {
         height: '100%',

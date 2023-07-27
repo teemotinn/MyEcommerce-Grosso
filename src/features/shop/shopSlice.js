@@ -2,24 +2,26 @@ import { createSlice } from "@reduxjs/toolkit";
 import Products from '../../data/products.json'
 
 export const shopSlice = createSlice({
-    name: 'shopSlice',
+    name: "Shop",
     initialState: {
         value: {
-            categorySelected: '',
-            idSelected: '',
+            categorySelected: "",
+            selectedProductId: "",
             allProducts: Products,
             productsSelected: []
         }
     },
     reducers: {
         setCategorySelected: (state, action) => {
+            state.value.productsSelected = state.value.allProducts.filter(product => product.category === action.payload)
             state.value.categorySelected = action.payload
         },
-        setIdSelected: (state, action) => {
-            state.value.idSelected = action.payload
+        setSelectedProductId: (state,action) => {
+            state.value.selectedProductId = action.payload
         }
     }
 })
 
-export const { setCategorySelected, setIdSelected } = shopSlice.actions
+export const {setCategorySelected, setSelectedProductId} = shopSlice.actions
+
 export default shopSlice.reducer

@@ -10,13 +10,13 @@ import {
 
 import allProducts from "../data/products.json"
 import Header from "../components/Header"
+import { useSelector } from "react-redux";
 
 const ItemDetail = ({
     navigation,
     route
 }) => {
-
-    const { productId: idSelected } = route.params
+    const selectedProductId = useSelector(state => state.shopReducer.value.selectedProductId)
 
     const [product, setProduct] = useState(null);
     const [orientation, setOrientation] = useState("portrait");
@@ -29,10 +29,10 @@ const ItemDetail = ({
 
     useEffect(() => {
         const productSelected = allProducts.find(
-            (product) => product.id === idSelected
+            (product) => product.id === selectedProductId
         );
         setProduct(productSelected);
-    }, [idSelected]);
+    }, [selectedProductId]);
 
     return (
         <View style={{ flex: 1 }}>
@@ -87,6 +87,6 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
-        fontFamily:'Nunito'
+        fontFamily: 'Nunito'
     }
 });
