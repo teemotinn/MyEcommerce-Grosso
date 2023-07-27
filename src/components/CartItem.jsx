@@ -6,7 +6,6 @@ import Card from "./Card"
 import { colors } from "../global/colors"
 
 const CartItem = ({ cartItem }) => {
-    console.log(cartItem);
     return (
         <Card additionalStyle={styles.additionalStylesCard}>
             <View style={styles.textContainer}>
