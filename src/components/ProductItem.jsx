@@ -23,7 +23,7 @@ export default function ProductItem({
         >
             <Text
                 style={styles.productTitle}>
-                {item.title}sss
+                {item.title}
             </Text>
             <Image
                 resizeMode='cover'

@@ -30,7 +30,7 @@ export default Order
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'space-between',
+        justifyContent:'center',
         flex: 1,
         margin: 12,
     },

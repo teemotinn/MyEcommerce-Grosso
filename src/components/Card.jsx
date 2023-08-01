@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     container: {
         paddingVertical: 6,
         paddingHorizontal: 12,
-        width: '100%',
+        maxWidth: 480,
         alignSelf: 'stretch',
         borderWidth: 0.5,
         backgroundColor: colors.SECONDARY,

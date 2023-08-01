@@ -1,16 +1,18 @@
 import React from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
 
-import categories from '../data/categories.json'
 import CategoryItem from '../components/CategoryItem'
 import Header from '../components/Header'
+import { useGetCategoriesQuery } from '../services/shopServices'
 
 export default function Home({
     navigation,
 }) {
+    const { data: categories, isLoading, isError } = useGetCategoriesQuery()
+
     return (
         <View style={{ flex: 1 }}>
-            <Header title={'Home'}/>
+            <Header title={'Home'} />
             <View style={styles.container}>
                 <FlatList
                     data={categories}
@@ -31,6 +33,7 @@ export default function Home({
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'center'
     }
 })

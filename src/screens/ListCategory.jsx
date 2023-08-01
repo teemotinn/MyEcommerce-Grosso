@@ -5,11 +5,14 @@ import ProductItem from '../components/ProductItem'
 import Search from '../components/Search'
 import Header from '../components/Header'
 import { useSelector } from 'react-redux'
+import { useGetProductsByCategoryQuery } from '../services/shopServices'
 
 const ItemListCategory = ({
     navigation,
 }) => {
+    const categorySelected = useSelector(state => state.shopReducer.value.categorySelected)
     const productsSelected = useSelector(state => state.shopReducer.value.productsSelected)
+    const { data, isLoading, isError } = useGetProductsByCategoryQuery(categorySelected)
 
     const [products, setProducts] = useState([])
     const [keyword, setKeyword] = useState("")
@@ -68,6 +71,7 @@ export default ItemListCategory
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })
