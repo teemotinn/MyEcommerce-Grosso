@@ -3,5 +3,6 @@ export const colors = {
     SECONDARY: '#FA9884',
     TERTIARY: '#FFE5CA',
     BACKGROUND: '#FFF3E2',
-    FONT: '#000000'
+    FONT: '#000000',
+    
 }

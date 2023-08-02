@@ -16,7 +16,7 @@ export default function Navigator() {
         <SafeAreaView style={styles.container}>
             <StatusBar style="light" translucent />
             <NavigationContainer>
-                <Tab.Navigator
+                {/*<Tab.Navigator
                     screenOptions={{
                         headerShown: false,
                         tabBarShowLabel: false,
@@ -62,7 +62,8 @@ export default function Navigator() {
                         }
                     }}
                 />
-                </Tab.Navigator>
+                </Tab.Navigator> */}
+                
             </NavigationContainer>
         </SafeAreaView>
     )
