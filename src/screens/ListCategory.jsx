@@ -11,16 +11,17 @@ const ItemListCategory = ({
     navigation,
 }) => {
     const categorySelected = useSelector(state => state.shopReducer.value.categorySelected)
-    const productsSelected = useSelector(state => state.shopReducer.value.productsSelected)
-    const { data, isLoading, isError } = useGetProductsByCategoryQuery(categorySelected)
+    const { data: productsSelected, isLoading, isError } = useGetProductsByCategoryQuery(categorySelected)
 
     const [products, setProducts] = useState([])
     const [keyword, setKeyword] = useState("")
     const [keywordError, setKeywordError] = useState("")
 
     useEffect(() => {
-        const productsFiltered = productsSelected.filter(product => product.title.toLocaleLowerCase().includes(keyword.toLowerCase()))
-        setProducts(productsFiltered)
+        if (productsSelected) {
+            const productsFiltered = productsSelected.filter(product => product.title.toLocaleLowerCase().includes(keyword.toLowerCase()))
+            setProducts(productsFiltered)
+        }
 
     }, [productsSelected, keyword])
 

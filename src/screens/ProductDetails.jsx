@@ -10,13 +10,16 @@ import {
 
 import allProducts from "../data/products.json"
 import Header from "../components/Header"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"
+import { addCartItem } from "../features/cart/cartSlice"
 
 const ItemDetail = ({
     navigation,
     route
 }) => {
     const selectedProductId = useSelector(state => state.shopReducer.value.selectedProductId)
+
+    const dispatch = useDispatch()
 
     const [product, setProduct] = useState(null);
     const [orientation, setOrientation] = useState("portrait");
@@ -33,6 +36,13 @@ const ItemDetail = ({
         );
         setProduct(productSelected);
     }, [selectedProductId]);
+
+    const onAddCart = () => {
+        dispatch(addCartItem({
+            ...product,
+            quantity: 1
+        }))
+    }
 
     return (
         <View style={{ flex: 1 }}>
@@ -54,7 +64,10 @@ const ItemDetail = ({
                         <Text style={styles.text}>{product.title}</Text>
                         <Text style={styles.text}>{product.description}</Text>
                         <Text style={styles.text}>${product.price}</Text>
-                        <Button title="Add cart"></Button>
+                        <Button
+                            title="Add cart"
+                            onPress={onAddCart}
+                        />
                     </View>
                 </View>
             ) : null}
