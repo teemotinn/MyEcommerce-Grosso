@@ -7,63 +7,72 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ShopStack from './ShopStack'
 import CartStack from './CartStack'
 import OrderStack from './OrderStack'
+import AuthStack from './AuthStack'
 
 import { colors } from '../global/colors'
+import { useSelector } from 'react-redux';
+
+const Tab = createBottomTabNavigator()
 
 export default function Navigator() {
-    const Tab = createBottomTabNavigator()
+
+    const { email } = useSelector(state => state.userReducer.value)
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar style="light" translucent />
             <NavigationContainer>
-                {/*<Tab.Navigator
-                    screenOptions={{
-                        headerShown: false,
-                        tabBarShowLabel: false,
-                        tabBarStyle: styles.tabBar
-                    }}
-                >
-                    <Tab.Screen
-                        name='Shop'
-                        component={ShopStack}
-                        options={{
-                            tabBarIcon: ({ focused }) => {
-                                return (
-                                    <View>
-                                        <MaterialCommunityIcons name="store" size={24} color={focused ? 'black' : colors.SECONDARY} />
-                                    </View>
-                                )
-                            }
+                {email
+                    ? <Tab.Navigator
+                        screenOptions={{
+                            headerShown: false,
+                            tabBarShowLabel: false,
+                            tabBarStyle: styles.tabBar
                         }}
-                    />
-                    <Tab.Screen
-                        name='Cart'
-                        component={CartStack}
-                        options={{
-                            tabBarIcon: ({ focused }) => {
-                                return (
-                                    <View>
-                                       <MaterialCommunityIcons name="cart" size={24} color={focused ? 'black' : colors.SECONDARY} />
-                                    </View>
-                                )
-                            }
-                        }}
-                    />
-                    <Tab.Screen
-                    name='Orders'
-                    component={OrderStack}
-                    options={{
-                        tabBarIcon: ({focused}) => {
-                            return (
-                                <View>
-                                    <MaterialCommunityIcons name="format-list-bulleted" size={24} color={focused ? 'black' : colors.SECONDARY} />
-                                </View>
-                            )
-                        }
-                    }}
-                />
-                </Tab.Navigator> */}
-                
+                    >
+                        <Tab.Screen
+                            name='Shop'
+                            component={ShopStack}
+                            options={{
+                                tabBarIcon: ({ focused }) => {
+                                    return (
+                                        <View>
+                                            <MaterialCommunityIcons name="store" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                        </View>
+                                    )
+                                }
+                            }}
+                        />
+                        <Tab.Screen
+                            name='Cart'
+                            component={CartStack}
+                            options={{
+                                tabBarIcon: ({ focused }) => {
+                                    return (
+                                        <View>
+                                            <MaterialCommunityIcons name="cart" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                        </View>
+                                    )
+                                }
+                            }}
+                        />
+                        <Tab.Screen
+                            name='Orders'
+                            component={OrderStack}
+                            options={{
+                                tabBarIcon: ({ focused }) => {
+                                    return (
+                                        <View>
+                                            <MaterialCommunityIcons name="format-list-bulleted" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                        </View>
+                                    )
+                                }
+                            }}
+                        />
+                    </Tab.Navigator>
+                    : <AuthStack />
+                }
+
             </NavigationContainer>
         </SafeAreaView>
     )

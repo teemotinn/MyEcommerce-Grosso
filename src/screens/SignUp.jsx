@@ -1,16 +1,12 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import InputForm from "../components/InputForm";
-import SubmitButton from "../components/SubmitButton";
-import { colors } from "../global/colors";
-import { useSignUpMutation } from "../services/authServices";
-import { useDispatch } from "react-redux";
-import { setUser } from "../Features/User/userSlice";
-import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth";
-/* import { useSignUpMutation } from "../services/authService";
-import { useDispatch } from "react-redux";
-import { setUser } from "../features/auth/authSlice";
-import { signupSchema } from "../validations/singupSchema"; */
+import { Pressable, StyleSheet, Text, View } from "react-native"
+import React, { useEffect, useState } from "react"
+import InputForm from "../components/InputForm"
+import SubmitButton from "../components/SubmitButton"
+import { colors } from "../global/colors"
+import { useSignUpMutation } from "../services/authServices"
+import { useDispatch } from "react-redux"
+import { setUser } from "../features/user/userSlice"
+import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth"
 
 const SignUpScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -22,8 +18,6 @@ const SignUpScreen = ({ navigation }) => {
 
     const [triggerSignUp, result] = useSignUpMutation()
     const dispatch = useDispatch()
-
-    console.log(result);
 
     useEffect(() => {
         if (result.isSuccess) {
@@ -38,7 +32,6 @@ const SignUpScreen = ({ navigation }) => {
 
     const onSubmit = () => {
         try {
-            //Submit logic with validations
             const isValidVariableEmail = isValidEmail(email)
             const isCorrectPassword = isAtLeastSixCharacters(password)
             const isRepeatedPasswordCorrect = password === confirmPassword
@@ -60,7 +53,6 @@ const SignUpScreen = ({ navigation }) => {
             else setErrorConfirmPassword('')
 
         } catch (err) {
-            console.log("Catch error");
             console.log(err.message);
         }
     };
