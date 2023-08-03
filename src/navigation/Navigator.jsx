@@ -2,15 +2,16 @@ import React from 'react'
 import { StyleSheet, SafeAreaView, Platform, StatusBar, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import ShopStack from './ShopStack'
 import CartStack from './CartStack'
 import OrderStack from './OrderStack'
 import AuthStack from './AuthStack'
+import MyProfileStack from './MyProfileStack'
 
 import { colors } from '../global/colors'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
 const Tab = createBottomTabNavigator()
 
@@ -67,6 +68,23 @@ export default function Navigator() {
                                         </View>
                                     )
                                 }
+                            }}
+                        />
+                        <Tab.Screen
+                            name="MyProfile"
+                            component={MyProfileStack}
+                            options={{
+                                tabBarIcon: ({ focused }) => {
+                                    return (
+                                        <View style={styles.item}>
+                                            <MaterialCommunityIcons
+                                                name="account"
+                                                size={24}
+                                                color={focused ? 'black' : colors.SECONDARY}
+                                            />
+                                        </View>
+                                    );
+                                },
                             }}
                         />
                     </Tab.Navigator>

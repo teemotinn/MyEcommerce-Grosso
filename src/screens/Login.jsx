@@ -45,7 +45,13 @@ const LoginScreen = ({ navigation }) => {
         if (resultSignIn.isSuccess) {
             dispatch(setUser({
                 email: resultSignIn.data.email,
-                idToken: resultSignIn.data.idToken
+                idToken: resultSignIn.data.idToken,
+                localId: resultSignIn.data.localId,
+                profileImage: "",
+                location: {
+                    latitude: "",
+                    longitude: "",
+                }
             }))
         }
     }, [resultSignIn])
@@ -96,7 +102,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 22,
-        fontFamily: "Josefin",
+        fontFamily: "Nunito",
     },
     sub: {
         fontSize: 14,

@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
 import shopReducer from '../features/shop/shopSlice'
 import cartReducer from '../features/cart/cartSlice'
 import userReducer from '../features/user/userSlice'
@@ -14,7 +14,7 @@ const store = configureStore({
         [shopApi.reducerPath]: shopApi.reducer,
         [authApi.reducerPath]: authApi.reducer,
     },
-    middleware: (getDefaultMiddleware) =>
+    middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(shopApi.middleware, authApi.middleware),
 })
 
