@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, View, StyleSheet, Text } from "react-native";
+import { Image, View, StyleSheet, Text, Alert, Linking } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import AddButton from "../components/AddButton";
 import { colors } from "../global/colors";
@@ -17,10 +17,7 @@ const ImageSelector = ({ navigation }) => {
 
     const verifyCameraPermissions = async () => {
         const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-        if (!granted) {
-            return false;
-        }
-        return true;
+        return granted;
     };
 
     const pickImage = async () => {
@@ -38,12 +35,31 @@ const ImageSelector = ({ navigation }) => {
                 quality: 1,
             });
 
-            console.log(result.assets);
-
             if (!result.canceled) {
                 setImage(result.assets[0].uri);
             }
         }
+        else {
+            Alert.alert(
+                'Camera Permission Required',
+                'Camera permission is required to continue.',
+                [
+                    {
+                        text: 'Cancel',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'Go to Settings',
+                        onPress: () => {
+                            Linking.openSettings()
+                        },
+                    },
+                ],
+                { cancelable: false }
+            );
+        }
+
     };
 
     const confirmImage = async () => {
