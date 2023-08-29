@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, SafeAreaView, Platform, StatusBar, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -11,13 +11,34 @@ import AuthStack from './AuthStack'
 import MyProfileStack from './MyProfileStack'
 
 import { colors } from '../global/colors'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { getSession } from "../SQLite"
+import { setUser } from "../features/user/userSlice"
 
 const Tab = createBottomTabNavigator()
 
 export default function Navigator() {
 
-    const { email } = useSelector(state => state.userReducer.value)
+    const { email } = useSelector((state) => state.userReducer.value);
+
+    const dispatch = useDispatch()
+
+    //Get stored sessions
+    useEffect(() => {
+        (async () => {
+            try {
+                const session = await getSession()
+                console.log(session);
+                if (session?.rows.length) {
+                    const user = session.rows._array[0]
+                    dispatch(setUser(user))
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        })()
+    }, [])
 
     return (
         <SafeAreaView style={styles.container}>

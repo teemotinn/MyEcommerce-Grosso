@@ -13,6 +13,9 @@ const Cart = () => {
   const onConfirm = () => {
     triggerPostCart({ cartData, total, user, updatedAt })
   }
+
+  console.log(result);
+  
   return (
     <View style={{ flex: 1 }}>
       <Header title={'Cart'} />

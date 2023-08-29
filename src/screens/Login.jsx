@@ -7,6 +7,7 @@ import { useSignInMutation } from "../services/authServices";
 import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/user/userSlice";
+import { insertSession } from "../SQLite";
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -42,18 +43,34 @@ const LoginScreen = ({ navigation }) => {
     };
 
     useEffect(() => {
-        if (resultSignIn.isSuccess) {
-            dispatch(setUser({
-                email: resultSignIn.data.email,
-                idToken: resultSignIn.data.idToken,
-                localId: resultSignIn.data.localId,
-                profileImage: "",
-                location: {
-                    latitude: "",
-                    longitude: "",
+        (async () => {
+            try {
+                if (resultSignIn.isSuccess) {
+
+                    //Insert session in SQLite database
+                    const response = await insertSession({
+                        idToken: resultSignIn.data.idToken,
+                        localId: resultSignIn.data.localId,
+                        email: resultSignIn.data.email,
+                    })
+
+                    console.log(response)
+
+                    dispatch(setUser({
+                        email: resultSignIn.data.email,
+                        idToken: resultSignIn.data.idToken,
+                        localId: resultSignIn.data.localId,
+                        profileImage: "",
+                        location: {
+                            latitude: "",
+                            longitude: "",
+                        }
+                    }))
                 }
-            }))
-        }
+            } catch (error) {
+                console.log(error.message);
+            }
+        })()
     }, [resultSignIn])
 
     return (
