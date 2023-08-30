@@ -1,21 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 
-import CartItem from '../components/CartItem';
-import Header from '../components/Header';
-import { useSelector } from 'react-redux';
-import { usePostCartMutation } from '../services/shopServices';
+import CartItem from '../components/CartItem'
+import Header from '../components/Header'
+
+import { usePostCartMutation } from '../services/shopServices'
+import { resetCart } from "../features/cart/cartSlice"
 
 const Cart = () => {
-  const { items: cartData, total, updatedAt, user } = useSelector(state => state.cartReducer.value)
+  const { items: cartData, total, updatedAt } = useSelector(state => state.cartReducer.value)
+  const dispatch = useDispatch();
+  const { localId: userId } = useSelector(state => state.userReducer.value)
   const [triggerPostCart, result] = usePostCartMutation()
 
+  useEffect(() => {
+    console.log(result.isSuccess)
+    result.isSuccess && dispatch(resetCart())
+  }, [result.isSuccess])
+
+
   const onConfirm = () => {
-    triggerPostCart({ cartData, total, user, updatedAt })
+    triggerPostCart({ cartData, total, userId, updatedAt })
   }
 
   console.log(result);
-  
+
   return (
     <View style={{ flex: 1 }}>
       <Header title={'Cart'} />

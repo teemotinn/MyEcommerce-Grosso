@@ -32,6 +32,9 @@ export const shopApi = createApi({
                 body: order
             })
         }),
+        getOrders: builder.query({
+            query: (userId) => `orders.json?orderBy="userId"&equalTo=${userId}`,
+        }),
         getProfileImage: builder.query({
             query: (localId) => `profileImages/${localId}.json`,
         }),
