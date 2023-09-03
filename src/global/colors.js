@@ -4,5 +4,5 @@ export const colors = {
     TERTIARY: '#FFE5CA',
     BACKGROUND: '#FFF3E2',
     FONT: '#000000',
-    
+    BUTTON_BORDER:'#000000'
 }
