@@ -12,6 +12,7 @@ import allProducts from "../data/products.json"
 import Header from "../components/Header"
 import { useDispatch, useSelector } from "react-redux"
 import { addCartItem } from "../features/cart/cartSlice"
+import PrimaryButton from "../components/PrimaryButton"
 
 const ItemDetail = ({
     navigation,
@@ -55,20 +56,23 @@ const ItemDetail = ({
                             : styles.mainContainerLandscape
                     }
                 >
-                    <Image
-                        source={{ uri: product.images[0] }}
-                        style={styles.image}
-                        resizeMode="cover"
-                    />
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text}>{product.title}</Text>
-                        <Text style={styles.text}>{product.description}</Text>
-                        <Text style={styles.text}>${product.price}</Text>
-                        <Button
-                            title="Add cart"
-                            onPress={onAddCart}
+                    <View style={styles.infoContainer}>
+                        <Image
+                            source={{ uri: product.images[0] }}
+                            style={styles.image}
+                            resizeMode="cover"
                         />
+                        <View style={styles.textContainer}>
+                            <Text style={styles.titleText}>{product.title}</Text>
+                            <Text style={styles.descriptionText}>{product.description}</Text>
+                            <Text style={styles.price}>${product.price}</Text>
+                        </View>
+
                     </View>
+                    <PrimaryButton
+                        title='Add cart'
+                        onPress={onAddCart}
+                    />
                 </View>
             ) : null}
         </View>
@@ -79,27 +83,44 @@ export default ItemDetail;
 
 const styles = StyleSheet.create({
     mainContainer: {
+        flex: 1,
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: 'space-between',
         alignItems: "center",
-        padding: 10,
+        padding: 16,
     },
     mainContainerLandscape: {
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        padding: 10,
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: 'space-between',
+        alignItems: "center",
+        padding: 16,
     },
     image: {
         width: 300,
         height: 250,
     },
-    textContainer: {
-        padding: 10,
-        flexDirection: "column",
+    infoContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%'
     },
-    text: {
-        fontSize: 20,
+    textContainer: {
+        width: '100%',
+        marginTop: 8
+    },
+    titleText: {
+        fontSize: 24,
+        fontFamily: 'NunitoBold'
+    },
+    descriptionText: {
+        marginTop: 12,
+        fontSize: 16,
         fontFamily: 'Nunito'
+    },
+    price: {
+        marginTop: 16,
+        fontSize: 24,
+        fontFamily: 'NunitoBold'
     }
 });

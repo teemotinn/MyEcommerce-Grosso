@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View, StyleSheet } from 'react-native'
 import Icon from "react-native-vector-icons/Ionicons"
 import { colors } from '../global/colors'
 
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     color: colors.FONT,
     fontSize: 14,
-    fontFamily: 'NunitoBold'
+    fontFamily: 'Nunito'
   },
   button: {
     marginVertical: 24,

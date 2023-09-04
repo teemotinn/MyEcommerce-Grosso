@@ -1,82 +1,77 @@
 import React, { useState } from "react"
 import { Text, TouchableOpacity, View, StyleSheet, ScrollView } from "react-native"
 import Modal from "react-native-modal"
-import ProgressCircle from "../components/ProgressCircle"
+import ProgressCircle from "./ProgressCircle"
 import { colors } from "../global/colors"
 
-type Props = {
-  isLoading?: boolean,
-  isVisible: boolean,
-  title?: string,
-  mainButtonText?: string,
-  mainButtonDisabled?: boolean,
-  onMainButtonPress?: () => void,
-  secondaryButtonText?: string,
-  onSecondaryButtonPress?: () => void,
-  onModalHide?: () => void,
-  onModalHideWithMainButton?: () => void,
-  onModalHideWithSecondaryButton?: () => void,
-  content?: any,
-  children?: any
-}
+export default function MyModal({
+  isLoading,
+  isVisible,
+  title,
+  mainButtonText,
+  onMainButtonPress,
+  secondaryButtonText,
+  onSecondaryButtonPress,
+  onModalHide,
+  onModalHideWithMainButton,
+  onModalHideWithSecondaryButton,
+  children
+}) {
 
-export default function MyModal(props: Props) {
   const [isPrimaryButtonPressed, setIsPrimaryButtonPressed] = useState(false);
   const [isSecondaryButtonPressed, setIsSecondaryButtonPressed] = useState(false);
 
-  const onModalHide = () => {
-    props?.onModalHide?.()
+  const onModalHideProps = () => {
+    onModalHide?.()
     if (isPrimaryButtonPressed) {
       setIsPrimaryButtonPressed(false);
-      props?.onModalHideWithMainButton?.();
+      onModalHideWithMainButton?.();
     }
     if (isSecondaryButtonPressed) {
       setIsSecondaryButtonPressed(false);
-      props?.onModalHideWithSecondaryButton?.();
+      onModalHideWithSecondaryButton?.();
     }
   };
 
   return (
     <Modal
-      isVisible={props.isVisible}
-      onModalHide={onModalHide}
+      isVisible={isVisible}
+      onModalHide={onModalHideProps}
     >
       <View style={styles.centeredView}>
-        {props.isLoading ? (
+        {isLoading ? (
           <ProgressCircle />
         ) : (
           <View style={styles.modalView}>
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
-              <Text style={styles.modalTitle}>{props.title ?? ''}</Text>
-              <View>{props?.content ?? props.children}</View>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer}>
+              <Text style={styles.modalTitle}>{title ?? ''}</Text>
+              <View>{children}</View>
               <View style={styles.buttonsContainer}>
-                {(props.mainButtonText || props.onMainButtonPress) &&
+                {(mainButtonText || onMainButtonPress) &&
                   <TouchableOpacity
                     style={styles.mainButtonStyle}
                     onPress={() => {
-                      if (props?.mainButtonDisabled ?? true) {
-                        setIsSecondaryButtonPressed(false);
-                        setIsPrimaryButtonPressed(true);
-                        props.onMainButtonPress?.();
-                      }
+                      setIsSecondaryButtonPressed(false);
+                      setIsPrimaryButtonPressed(true);
+                      onMainButtonPress?.();
                     }}
                   >
                     <Text numberOfLines={1} style={styles.mainButtonText}>
-                      {props.mainButtonText ?? 'Ok'}
+                      {mainButtonText ?? 'Ok'}
                     </Text>
                   </TouchableOpacity>
                 }
-                {props.secondaryButtonText &&
+                {secondaryButtonText &&
                   <TouchableOpacity
                     style={styles.secondaryButtonStyle}
                     onPress={() => {
                       setIsPrimaryButtonPressed(false);
                       setIsSecondaryButtonPressed(true);
-                      props.onSecondaryButtonPress?.();
+                      onSecondaryButtonPress?.();
                     }}
                   >
                     <Text numberOfLines={1} style={styles.secondaryButtonText}>
-                      {props.secondaryButtonText}
+                      {secondaryButtonText}
                     </Text>
                   </TouchableOpacity>
                 }
@@ -98,7 +93,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   scrollContainer: {
-    padding: 24
+    padding: 24,
+    width:'100%',
   },
   modalTitle: {
     textAlign: 'center',

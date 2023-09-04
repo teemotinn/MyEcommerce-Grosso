@@ -1,12 +1,12 @@
 import { Text, StyleSheet, View } from 'react-native'
-import colors from '../global/colors'
+import {colors} from '../global/colors'
 
 export default function ModalMessage({
-    message
+    children
 }) {
     return (
         <View>
-            <Text style={styles.text}>{message}</Text>
+            <Text style={styles.text}>{children}</Text>
         </View>
     )
 }
