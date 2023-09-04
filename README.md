@@ -1,30 +1,30 @@
-# MyEcommerce-Grosso
+## MyEcommerce-Grosso
 
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-MyEcommerce-Grosso es una aplicación de comercio electrónico desarrollada en React Native, para un curso de Coderhouse, que permite a los usuarios comprar productos de manera sencilla y gestionar su perfil. Esta aplicación es una plataforma de comercio electrónico completa que incluye funcionalidades como la visualización de productos, la gestión del carrito de compras y la administración del perfil de usuario.
+MyEcommerce-Grosso is an e-commerce application developed in React Native, for a Coderhouse course, allowing users to easily purchase products and manage their profile. This application is a comprehensive e-commerce platform that includes features such as product visualization, shopping cart management, and user profile administration.
 
-## Características
+## Features
 
-- Visualización de productos con imágenes y detalles.
-- Carrito de compras para agregar y gestionar productos.
-- Gestión de perfil de usuario con foto de perfil personalizable.
-- Opciones de inicio de sesión y cierre de sesión.
-- Búsqueda de productos.
-- Checkout y procesamiento de pedidos.
-- Historial de pedidos.
-- Integración con servicios de autenticación y almacenamiento de datos.
+- Product visualization with images and details.
+- Shopping cart for adding and managing products.
+- User profile management with customizable profile picture.
+- Login and logout options.
+- Product search.
+- Checkout and order processing.
+- Order history.
+- Integration with authentication services and data storage.
 
-## Requisitos Previos
+## Prerequisites
 
 - Node.js
 - npm (Node Package Manager)
 - Expo CLI
-- Firebase Project (para el backend)
+- Firebase Project (for the backend)
 
-## Configuración
+## Configuration
 
-1. Clona el repositorio:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/teemotinn/MyEcommerce-Grosso.git
