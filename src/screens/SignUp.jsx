@@ -35,10 +35,6 @@ const SignUpScreen = ({ navigation }) => {
                     idToken: result.data.idToken,
                     localId: result.data.localId,
                     profileImage: "",
-                    location: {
-                        latitude: "",
-                        longitude: "",
-                    }
                 })
             )
         }
@@ -78,20 +74,24 @@ const SignUpScreen = ({ navigation }) => {
         <View style={styles.main}>
             <View style={styles.container}>
                 <Text style={styles.title}>Signup!</Text>
-                <InputForm label={"email"} onChange={setEmail} error={errorMail} />
                 <InputForm
-                    label={"password"}
+                    label={"Email"}
+                    onChange={setEmail}
+                    error={errorMail}
+                />
+                <InputForm
+                    label={"Password"}
                     onChange={setPassword}
                     error={errorPassword}
                     isSecure={true}
                 />
                 <InputForm
-                    label={"confirm password"}
+                    label={"Confirm password"}
                     onChange={setconfirmPassword}
                     error={errorConfirmPassword}
                     isSecure={true}
                 />
-                <PrimaryButton onPress={onSubmit} title="Send" />
+                <PrimaryButton onPress={onSubmit} title="Send" loading={result.isLoading} />
                 <Text style={styles.sub}>Already have an account?</Text>
                 <Pressable onPress={() => navigation.navigate("Login")}>
                     <Text style={styles.subLink}>Login</Text>
@@ -103,6 +103,7 @@ const SignUpScreen = ({ navigation }) => {
                 onMainButtonPress={() => setIsErrorModalVisivle(false)}
             >
                 <ModalMessage>
+                    {result.error?.message ?? ''}
                     Try again or contact our support.
                 </ModalMessage>
             </MyModal>

@@ -63,10 +63,6 @@ const LoginScreen = ({ navigation }) => {
                         idToken: resultSignIn.data.idToken,
                         localId: resultSignIn.data.localId,
                         profileImage: "",
-                        location: {
-                            latitude: "",
-                            longitude: "",
-                        }
                     }))
                 }
                 if (resultSignIn.isError) {
@@ -83,12 +79,12 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <Text style={styles.title}>Login to start!</Text>
                 <InputForm
-                    label={"email"}
+                    label={"Email"}
                     onChange={(email) => setEmail(email)}
                     error={errorEmail}
                 />
                 <InputForm
-                    label={"password"}
+                    label={"Password"}
                     onChange={(password) => setPassword(password)}
                     error={errorPassword}
                     isSecure={true}

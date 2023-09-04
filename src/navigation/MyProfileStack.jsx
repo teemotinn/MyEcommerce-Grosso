@@ -1,11 +1,9 @@
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MyProfile from "../screens/MyProfile";
-import ImageSelector from "../screens/ImageSelector";
-import ListAddress from "../screens/ListAddress";
-import LocationSelector from "../screens/LocationSelector";
+import React from "react"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import MyProfile from "../screens/MyProfile"
+import ImageSelector from "../screens/ImageSelector"
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 const MyProfileStack = () => {
     return (
@@ -27,24 +25,6 @@ const MyProfileStack = () => {
             <Stack.Screen
                 name="Image Selector"
                 component={ImageSelector}
-                options={{
-                    presentation: 'modal',
-                    animationTypeForReplace: 'push',
-                    animation: 'slide_from_right'
-                }}
-            />
-            <Stack.Screen
-                name="List Address"
-                component={ListAddress}
-                options={{
-                    presentation: 'modal',
-                    animationTypeForReplace: 'push',
-                    animation: 'slide_from_right'
-                }}
-            />
-            <Stack.Screen
-                name="Location Selector"
-                component={LocationSelector}
                 options={{
                     presentation: 'modal',
                     animationTypeForReplace: 'push',

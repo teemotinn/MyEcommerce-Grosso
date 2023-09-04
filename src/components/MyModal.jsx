@@ -105,12 +105,13 @@ const styles = StyleSheet.create({
   modalView: {
     width: '100%',
     maxWidth: 480,
+    backgroundColor: colors.BACKGROUND,
     borderRadius: 20,
     alignItems: "center",
   },
   scrollContainer: {
     padding: 24,
-    width:'100%',
+    width: '100%',
   },
   modalTitle: {
     textAlign: 'center',

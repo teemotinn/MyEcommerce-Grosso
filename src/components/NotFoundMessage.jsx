@@ -1,12 +1,13 @@
 import React from "react";
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { colors } from '../global/colors';
 
 /**
  * NotFoundMessage component for displaying a message when content is not found.
  *
  * @param {object} props - Component props.
+ * @param {string} props.icon - The icon of the message.
  * @param {string} props.title - The title of the message.
  * @param {string} props.message - The message to display.
  * @param {string} props.buttonText - The text for the action button.
@@ -14,6 +15,7 @@ import { colors } from '../global/colors';
  * @returns {JSX.Element} - NotFoundMessage component.
  */
 export default function NotFoundMessage({
+  icon,
   title,
   message,
   buttonText,
@@ -25,7 +27,7 @@ export default function NotFoundMessage({
     >
       <Icon
         size={70}
-        name={"file-tray"}
+        name={icon ?? "file-cabinet"}
         style={styles.icon}
       />
       {title &&

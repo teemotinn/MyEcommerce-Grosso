@@ -1,9 +1,9 @@
-import {createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { realtime_database_url } from "../database/firebaseConfig"
 
 export const shopApi = createApi({
     reducerPath: 'shopApi',
-    baseQuery: fetchBaseQuery({baseUrl: realtime_database_url}),
+    baseQuery: fetchBaseQuery({ baseUrl: realtime_database_url }),
     endpoints: (builder) => ({
         getCategories: builder.query({
             query: () => `categories.json`
@@ -43,40 +43,24 @@ export const shopApi = createApi({
             query: (localId) => `profileImages/${localId}.json`,
         }),
         postProfileImage: builder.mutation({
-            query: ({image, localId}) => ({
+            query: ({ image, localId }) => ({
                 url: `profileImages/${localId}.json`,
                 method: "PUT",
                 body: {
                     image: image
                 },
             }),
-        }),
-        getUserLocation: builder.query({
-            query: (localId) => `locations/${localId}.json`,
-        }),
-        postUserLocation: builder.mutation({
-            query: ({location, localId}) => ({
-                url: `locations/${localId}.json`,
-                method: "PUT",
-                body: {
-                    latitude: location.latitude,
-                    longitude: location.longitude,
-                    address: location.address
-                }
-            })
-        }),
+        })
     })
 })
 
 export const {
-    useGetCategoriesQuery, 
-    useGetProductsQuery, 
+    useGetCategoriesQuery,
+    useGetProductsQuery,
     useGetProductsByCategoryQuery,
     useGetProductByIdQuery,
     usePostCartMutation,
     useGetOrdersQuery,
     useGetProfileImageQuery,
     usePostProfileImageMutation,
-    useGetUserLocationQuery,
-    usePostUserLocationMutation,
 } = shopApi

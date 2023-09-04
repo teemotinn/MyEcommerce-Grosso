@@ -60,9 +60,10 @@ const Cart = ({
           />
           :
           <NotFoundMessage
+            icon='cart-heart'
             title={'Start a shopping cart!'}
             message={'Add products, we are here to send them to you.'}
-            onButtonPressed={() => navigation.navigate('ItemListCategory')}
+            onButtonPressed={() => navigation.navigate('Home')}
             buttonText={'Go shopping'}
           />
 

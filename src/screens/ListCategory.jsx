@@ -7,12 +7,14 @@ import Header from '../components/Header'
 import { useSelector } from 'react-redux'
 import { useGetProductsByCategoryQuery } from '../services/shopServices'
 import ProgressCircle from '../components/ProgressCircle'
+import NotFoundMessage from '../components/NotFoundMessage'
+import { ERROR_TITLE } from '../global/constants'
 
 const ItemListCategory = ({
     navigation,
 }) => {
     const categorySelected = useSelector(state => state.shopReducer.value.categorySelected)
-    const { data: productsSelected, isLoading } = useGetProductsByCategoryQuery(categorySelected)
+    const { data: productsSelected, isLoading, isError, refetch } = useGetProductsByCategoryQuery(categorySelected)
 
     const [products, setProducts] = useState([])
     const [keyword, setKeyword] = useState("")
@@ -34,7 +36,7 @@ const ItemListCategory = ({
             setKeyword(input)
             setKeywordError("")
         } else {
-            setKeywordError("Solo letras y números")
+            setKeywordError("Only letters and numbers.")
         }
     }
 
@@ -43,31 +45,51 @@ const ItemListCategory = ({
         setKeywordError("")
     }
 
+    const showResult = () => {
+        return (
+            isError
+                ? <NotFoundMessage
+                    title={ERROR_TITLE}
+                    icon='alert-circle-outline'
+                    message='Try again or contact our support.'
+                    buttonText={'Retry'}
+                    onButtonPressed={refetch}
+                />
+                : <View>
+                    <Search
+                        onSearch={onSearch}
+                        onErase={onErase}
+                        error={keywordError}
+                    />
+                    {
+                        products.length === 0
+                            ? <NotFoundMessage
+                                title='No products were found'
+                                icon='magnify'
+                            />
+                            : <FlatList
+                                data={products}
+                                keyExtractor={product => product.id}
+                                renderItem={({ item }) => <ProductItem item={item} navigation={navigation} />}
+                                showsVerticalScrollIndicator={false}
+                                contentContainerStyle={{
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    padding: 12
+                                }}
+                            />
+                    }
+                </View >
+        )
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <Header title={'Products'} goBack={navigation.goBack} />
             <View style={styles.container}>
                 {isLoading
                     ? <ProgressCircle />
-                    : <View>
-                        <Search
-                            onSearch={onSearch}
-                            onErase={onErase}
-                            error={keywordError}
-                        />
-                        <FlatList
-                            data={products}
-                            keyExtractor={product => product.id}
-                            renderItem={({ item }) => <ProductItem item={item} navigation={navigation} />}
-                            showsVerticalScrollIndicator={false}
-                            contentContainerStyle={{
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                padding: 12
-                            }}
-                        />
-                    </View>
-
+                    : showResult()
                 }
             </View>
         </View>

@@ -55,7 +55,9 @@ const Order = ({
         return (
             isError
                 ? <NotFoundMessage
+                    icon='alert-circle-outline'
                     title={ERROR_TITLE}
+                    message='Try again or contact our support.'
                     buttonText={'Retry'}
                     onButtonPressed={refetch}
                 />

@@ -37,7 +37,7 @@ export default function Search({
             </View>
 
             {!!error && (
-                <Text>{error}</Text>
+                <Text style={styles.error}>{error}</Text>
             )}
         </View>
     );
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         padding: 12,
         justifyContent: 'center',
         alignItems: 'center',
+        width: '100%'
     },
     toolsContainer: {
         flexDirection: 'row',
@@ -64,4 +65,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.SECONDARY,
         borderRadius: 10,
     },
+    error: {
+        fontFamily: 'NunitoBold',
+        color: colors.ERROR_FONT
+    }
 });

@@ -16,15 +16,20 @@ import { useGetProductByIdQuery } from "../services/shopServices"
 import Header from "../components/Header"
 import PrimaryButton from "../components/PrimaryButton"
 import ProgressCircle from "../components/ProgressCircle"
+import { colors } from "../global/colors"
+import MySnackbar from "../components/MySnackbar"
+import NotFoundMessage from "../components/NotFoundMessage"
+import { ERROR_TITLE } from "../global/constants"
 
 const ItemDetail = ({
     navigation
 }) => {
-    const selectedProductId = useSelector(state => state.shopReducer.value.selectedProductId)
+    const [isSnackbarVisible, setIsSnackbarVisible] = useState(false)
 
+    const selectedProductId = useSelector(state => state.shopReducer.value.selectedProductId)
     const dispatch = useDispatch()
 
-    const { data, isLoading, refetch } = useGetProductByIdQuery(selectedProductId)
+    const { data, isLoading, isError, refetch } = useGetProductByIdQuery(selectedProductId)
 
     const loadDataOnFocus = useCallback(() => {
         refetch()
@@ -45,15 +50,19 @@ const ItemDetail = ({
             ...data,
             quantity: 1
         }))
+        setIsSnackbarVisible(true)
     }
 
-    return (
-        <View style={{ flex: 1 }}>
-            <Header goBack={navigation.goBack} />
-            {isLoading
-                ? <View style={styles.centeredItems}>
-                    <ProgressCircle />
-                </View>
+    const showResult = () => {
+        return (
+            isError
+                ? <NotFoundMessage
+                    title={ERROR_TITLE}
+                    icon='alert-circle-outline'
+                    message='Try again or contact our support.'
+                    buttonText={'Retry'}
+                    onButtonPressed={refetch}
+                />
                 : <View
                     style={
                         orientation === "portrait"
@@ -71,15 +80,36 @@ const ItemDetail = ({
                             <Text style={styles.titleText}>{data.title}</Text>
                             <Text style={styles.descriptionText}>{data.description}</Text>
                             <Text style={styles.price}>${data.price}</Text>
+                            <Text style={styles.stock}>
+                                {data.stock === 0 && 'Out of stock'}
+                            </Text>
                         </View>
 
                     </View>
                     <PrimaryButton
+                        disabled={data.stock === 0}
                         title='Add to cart'
                         onPress={onAddCart}
                     />
+                </View >
+        )
+    }
+
+    return (
+        <View style={{ flex: 1 }}>
+            <Header goBack={navigation.goBack} />
+            {isLoading
+                ? <View style={styles.centeredItems}>
+                    <ProgressCircle />
                 </View>
+                : showResult()
             }
+            <MySnackbar
+                isVisible={isSnackbarVisible}
+                message={'Added!'}
+                onDismiss={() => setIsSnackbarVisible(false)}
+                onPressAction={() => setIsSnackbarVisible(false)}
+            />
         </View>
     );
 };
@@ -113,23 +143,33 @@ const styles = StyleSheet.create({
     infoContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%'
+        width: '100%',
+        marginBottom: 12
     },
     textContainer: {
         width: '100%',
         marginTop: 8
     },
     titleText: {
+        color: colors.FONT,
         fontSize: 24,
         fontFamily: 'NunitoBold'
     },
     descriptionText: {
+        color: colors.FONT,
         marginTop: 12,
         fontSize: 16,
         fontFamily: 'Nunito'
     },
     price: {
+        color: colors.FONT,
         marginTop: 16,
+        fontSize: 24,
+        fontFamily: 'NunitoBold'
+    },
+    stock: {
+        color: colors.ALERT_FONT,
+        marginTop: 4,
         fontSize: 24,
         fontFamily: 'NunitoBold'
     }

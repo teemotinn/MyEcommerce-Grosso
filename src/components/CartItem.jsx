@@ -19,7 +19,7 @@ import { colors } from "../global/colors";
  */
 const CartItem = ({ cartItem }) => {
     const dispatch = useDispatch();
-    
+
     const onDeleteProduct = () => {
         dispatch(removeCartItem({
             ...cartItem
@@ -33,7 +33,7 @@ const CartItem = ({ cartItem }) => {
                 <Text numberOfLines={1} style={styles.detailText}>{cartItem.brand}</Text>
                 <Text numberOfLines={1} style={styles.detailText}>${cartItem.price}</Text>
             </View>
-            <TouchableOpacity onPress={onDeleteProduct}>
+            <TouchableOpacity style={styles.icon} onPress={onDeleteProduct}>
                 <MaterialCommunityIcons name="trash-can-outline" size={24} color="black" />
             </TouchableOpacity>
         </Card>
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",
+        flex: 3
     },
     titleText: {
         fontFamily: 'Nunito',
@@ -63,4 +64,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: colors.FONT,
     },
+    icon: {
+        flexShrink: 1,
+    }
 });

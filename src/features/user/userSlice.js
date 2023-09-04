@@ -8,11 +8,6 @@ export const userSlice = createSlice({
             idToken: "",
             localId: "",
             profileImage: "",
-            location: {
-                latitude: "",
-                longitude: "",
-                address: ""
-            },
         }
     },
     reducers: {
@@ -25,11 +20,6 @@ export const userSlice = createSlice({
                 idToken: "",
                 localId: "",
                 profileImage: "",
-                location: {
-                    latitude: "",
-                    longitude: "",
-                    address: ""
-                },
             }
         },
         saveImage: (state, action) => {
