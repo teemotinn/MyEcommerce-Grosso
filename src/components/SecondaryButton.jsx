@@ -1,8 +1,19 @@
-import React, { useEffect, useState } from "react"
-import { TouchableOpacity, StyleSheet, Animated } from 'react-native'
-import ProgressCircle from "../components/ProgressCircle"
-import { colors } from "../global/colors"
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, StyleSheet, Animated } from 'react-native';
+import ProgressCircle from '../components/ProgressCircle';
+import { colors } from '../global/colors';
 
+/**
+ * SecondaryButton component for rendering a secondary action button.
+ *
+ * @param {object} props - Component props.
+ * @param {object} props.containerStyle - Additional styles for the button container.
+ * @param {boolean} props.disabled - Indicates whether the button is disabled.
+ * @param {function} props.onPress - Function to execute when the button is pressed.
+ * @param {string} props.title - Button title text.
+ * @param {boolean} props.loading - Indicates whether the button is in a loading state.
+ * @returns {JSX.Element} - SecondaryButton component.
+ */
 const SecondaryButton = ({
     containerStyle,
     disabled,
@@ -56,12 +67,10 @@ const SecondaryButton = ({
             style={[
                 styles.button,
                 disabled && styles.disabledButtonDecoration,
-                containerStyle ?? []
+                containerStyle ?? [],
             ]}
         >
-            {loading &&
-                <ProgressCircle size={12} color={colors.FONT} />
-            }
+            {loading && <ProgressCircle size={12} color={colors.FONT} />}
             <Animated.Text
                 numberOfLines={1}
                 style={[
@@ -74,9 +83,9 @@ const SecondaryButton = ({
             </Animated.Text>
         </TouchableOpacity>
     );
-}
+};
 
-export default SecondaryButton
+export default SecondaryButton;
 
 const styles = StyleSheet.create({
     button: {
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
     },
     disabledButtonDecoration: {
         borderRadius: colors.DISABLED_BACKGROUND,
-        borderWidth: 1
+        borderWidth: 1,
     },
     disabledTextDecoration: {
         color: colors.DISABLED_FONT,

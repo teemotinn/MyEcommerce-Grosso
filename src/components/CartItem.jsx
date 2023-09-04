@@ -1,18 +1,29 @@
-import React from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { useDispatch } from "react-redux"
-import { removeCartItem } from "../features/cart/cartSlice"
-import Card from "./Card"
-import { colors } from "../global/colors"
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useDispatch } from "react-redux";
+import { removeCartItem } from "../features/cart/cartSlice";
+import Card from "./Card";
+import { colors } from "../global/colors";
 
+/**
+ * CartItem component displays an item in the shopping cart.
+ *
+ * @param {object} props - Component props.
+ * @param {object} props.cartItem - Cart item information.
+ * @param {string} props.cartItem.title - The title of the item.
+ * @param {number} props.cartItem.quantity - The quantity of the item.
+ * @param {string} props.cartItem.brand - The brand of the item.
+ * @param {number} props.cartItem.price - The price of the item.
+ * @returns {JSX.Element} - CartItem component.
+ */
 const CartItem = ({ cartItem }) => {
-    const dispatch = useDispatch()
-
+    const dispatch = useDispatch();
+    
     const onDeleteProduct = () => {
         dispatch(removeCartItem({
             ...cartItem
-        }))
+        }));
     }
 
     return (

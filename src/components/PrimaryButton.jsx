@@ -3,6 +3,17 @@ import { TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import ProgressCircle from "../components/ProgressCircle";
 import { colors } from "../global/colors";
 
+/**
+ * PrimaryButton component for displaying a primary action button.
+ *
+ * @param {object} props - Component props.
+ * @param {object} props.containerStyle - Additional styles for the button container.
+ * @param {boolean} props.disabled - Whether the button is disabled.
+ * @param {function} props.onPress - Callback function for button press.
+ * @param {string} props.title - The text to display on the button.
+ * @param {boolean} props.loading - Whether the button is in a loading state.
+ * @returns {JSX.Element} - PrimaryButton component.
+ */
 const PrimaryButton = ({
     containerStyle,
     disabled,

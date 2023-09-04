@@ -1,7 +1,17 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { colors } from '../global/colors';
 
+/**
+ * InputForm component for displaying a labeled input field.
+ *
+ * @param {object} props - Component props.
+ * @param {string} props.label - The label for the input field.
+ * @param {function} props.onChange - Callback function to handle input changes.
+ * @param {string} props.error - Error message to display (optional).
+ * @param {boolean} props.isSecure - Flag to indicate if the input is a secure (password) field.
+ * @returns {JSX.Element} - InputForm component.
+ */
 const InputForm = ({
     label, 
     onChange, 
@@ -10,30 +20,31 @@ const InputForm = ({
 }) => {
     const [input, setInput] = useState("");
     const onChangeText = (text) => {
-        setInput(text)
-        onChange(text)
+        setInput(text);
+        onChange(text);
     }
-  return (
-    <View style={styles.inputContainer}>
-      <Text style={styles.subtitle}>{label}</Text>
-      <TextInput
-        style ={styles.input}
-        value={input}
-        onChangeText={onChangeText}
-        secureTextEntry={isSecure}
-      />
-      {error ? 
-        <Text style = {styles.error}>
-            {error}
-        </Text>
-        :
-        null
-    }
-    </View>
-  )
+
+    return (
+        <View style={styles.inputContainer}>
+            <Text style={styles.subtitle}>{label}</Text>
+            <TextInput
+                style={styles.input}
+                value={input}
+                onChangeText={onChangeText}
+                secureTextEntry={isSecure}
+            />
+            {error ? 
+                <Text style={styles.error}>
+                    {error}
+                </Text>
+                :
+                null
+            }
+        </View>
+    );
 }
 
-export default InputForm
+export default InputForm;
 
 const styles = StyleSheet.create({
     inputContainer: {

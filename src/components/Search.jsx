@@ -1,20 +1,29 @@
-import React, { useState } from 'react'
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, View, Pressable } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { colors } from '../global/colors';
 
-import { colors } from '../global/colors'
-
+/**
+ * Search component for inputting search queries.
+ *
+ * @param {object} props - Component props.
+ * @param {function} props.onSearch - Function to execute when searching.
+ * @param {function} props.onErase - Function to execute when clearing the search input.
+ * @param {string} [props.error] - Error message to display.
+ * @returns {JSX.Element} - Search component.
+ */
 export default function Search({
     onSearch,
     onErase,
-    error = "",
+    error = '',
 }) {
-    const [keyword, setKeyword] = useState("")
+    const [keyword, setKeyword] = useState('');
 
     return (
         <View style={styles.container}>
             <View style={styles.toolsContainer}>
-                <TextInput style={styles.input}
+                <TextInput
+                    style={styles.input}
                     placeholder='Search...'
                     value={keyword}
                     onChangeText={setKeyword}
@@ -27,13 +36,11 @@ export default function Search({
                 </Pressable>
             </View>
 
-            {!!error &&
-                <Text>
-                    {error}
-                </Text>
-            }
+            {!!error && (
+                <Text>{error}</Text>
+            )}
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -48,7 +55,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     toolButton: {
-        paddingLeft: 8
+        paddingLeft: 8,
     },
     input: {
         flex: 1,
@@ -56,5 +63,5 @@ const styles = StyleSheet.create({
         fontSize: 18,
         backgroundColor: colors.SECONDARY,
         borderRadius: 10,
-    }
-})
+    },
+});

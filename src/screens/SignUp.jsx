@@ -8,9 +8,11 @@ import { useSignUpMutation } from "../services/authServices"
 import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth"
 
 import InputForm from "../components/InputForm"
-import SubmitButton from "../components/SubmitButton"
 import { colors } from "../global/colors"
 import PrimaryButton from "../components/PrimaryButton"
+import MyModal from "../components/MyModal"
+import ModalMessage from "../components/ModalMessage"
+import { ERROR_TITLE } from "../global/constants"
 
 const SignUpScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -19,6 +21,8 @@ const SignUpScreen = ({ navigation }) => {
     const [errorPassword, setErrorPassword] = useState("")
     const [confirmPassword, setconfirmPassword] = useState("");
     const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
+
+    const [isErrorModalVisivle, setIsErrorModalVisivle] = useState(false)
 
     const [triggerSignUp, result] = useSignUpMutation()
     const dispatch = useDispatch()
@@ -37,6 +41,9 @@ const SignUpScreen = ({ navigation }) => {
                     }
                 })
             )
+        }
+        if (result.isError) {
+            setIsErrorModalVisivle(true)
         }
     }, [result])
 
@@ -90,6 +97,15 @@ const SignUpScreen = ({ navigation }) => {
                     <Text style={styles.subLink}>Login</Text>
                 </Pressable>
             </View>
+            <MyModal
+                isVisible={isErrorModalVisivle}
+                title={ERROR_TITLE}
+                onMainButtonPress={() => setIsErrorModalVisivle(false)}
+            >
+                <ModalMessage>
+                    Try again or contact our support.
+                </ModalMessage>
+            </MyModal>
         </View>
     );
 };

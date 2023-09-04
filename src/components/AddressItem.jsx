@@ -1,25 +1,32 @@
+import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
-import React from "react";
 import { colors } from "../global/colors";
 
+/**
+ * AddressItem component to display an address and provide an option to change it.
+ *
+ * @param {object} props - Component props.
+ * @param {object} props.location - Address information.
+ * @param {string} props.location.address - The address to display.
+ * @param {object} props.navigation - Navigation object.
+ * @returns {JSX.Element} - AddressItem component.
+ */
 const AddressItem = ({ location, navigation }) => {
-
     const onChangeLocation = () => {
-        navigation.navigate('Location Selector')
+        navigation.navigate('Location Selector');
     }
 
     return (
-        <View style={styles.card} onPress={() => {}}>
+        <View style={styles.card}>
             <View style={styles.textContainer}>
                 <Text style={styles.text}>
                     {location.address}
                 </Text>
             </View>
             <Pressable onPress={onChangeLocation}>
-                <Entypo name="location" size={30} color="black">
-                    <Text style={styles.text2}>Change</Text>
-                </Entypo>
+                <Entypo name="location" size={30} color="black" />
+                <Text style={styles.text2}>Change</Text>
             </Pressable>
         </View>
     );

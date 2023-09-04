@@ -1,7 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native"
 import React, { useEffect, useState } from "react"
 import InputForm from "../components/InputForm"
-import SubmitButton from "../components/SubmitButton"
 import { colors } from "../global/colors"
 import { useSignInMutation } from "../services/authServices"
 import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth"
@@ -9,6 +8,9 @@ import { useDispatch } from "react-redux"
 import { setUser } from "../features/user/userSlice"
 import { insertSession } from "../SQLite"
 import PrimaryButton from "../components/PrimaryButton"
+import MyModal from "../components/MyModal"
+import ModalMessage from "../components/ModalMessage"
+import { ERROR_TITLE } from "../global/constants"
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('')
@@ -16,6 +18,8 @@ const LoginScreen = ({ navigation }) => {
 
     const [errorEmail, setErrorEmail] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
+
+    const [isErrorModalVisivle, setIsErrorModalVisivle] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -65,6 +69,9 @@ const LoginScreen = ({ navigation }) => {
                         }
                     }))
                 }
+                if (resultSignIn.isError) {
+                    setIsErrorModalVisivle(true)
+                }
             } catch (error) {
                 console.log(error.message)
             }
@@ -96,6 +103,15 @@ const LoginScreen = ({ navigation }) => {
                     <Text style={styles.subLink}>Sign up</Text>
                 </Pressable>
             </View>
+            <MyModal
+                isVisible={isErrorModalVisivle}
+                title={ERROR_TITLE}
+                onMainButtonPress={() => setIsErrorModalVisivle(false)}
+            >
+                <ModalMessage>
+                    Try again or contact our support.
+                </ModalMessage>
+            </MyModal>
         </View>
     )
 }

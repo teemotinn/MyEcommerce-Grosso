@@ -1,20 +1,27 @@
-import React from 'react'
-import { Image, StyleSheet, Text } from 'react-native'
+import React from 'react';
+import { Image, StyleSheet, Text } from 'react-native';
+import Card from './Card';
+import { setSelectedProductId } from '../features/shop/shopSlice';
+import { useDispatch } from 'react-redux';
 
-import Card from './Card'
-import { setSelectedProductId } from '../features/shop/shopSlice'
-import { useDispatch } from 'react-redux'
-
+/**
+ * ProductItem component for displaying product information.
+ *
+ * @param {object} props - Component props.
+ * @param {object} props.item - Product item data.
+ * @param {object} props.navigation - Navigation object for navigating to the product detail.
+ * @returns {JSX.Element} - ProductItem component.
+ */
 export default function ProductItem({
     item,
     navigation
 }) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const onSelectProduct = () => {
-        dispatch(setSelectedProductId(item.id))
-        navigation.navigate('ProductDetail')
-    }
+        dispatch(setSelectedProductId(item.id));
+        navigation.navigate('ProductDetail');
+    };
 
     return (
         <Card
@@ -31,7 +38,7 @@ export default function ProductItem({
                 source={{ uri: item.images[0] }}
             />
         </Card>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -50,4 +57,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: "space-between",
     },
-})
+});

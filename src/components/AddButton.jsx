@@ -2,6 +2,16 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
 import { colors } from "../global/colors";
 
+/**
+ * Reusable custom button component for adding items.
+ *
+ * @param {object} props - Component props.
+ * @param {string} props.title - Text displayed on the button.
+ * @param {function} props.onPress - Callback function when the button is pressed.
+ * @param {string} props.color - Background color of the button.
+ * @returns {JSX.Element} - Custom add button element.
+ */
+
 const AddButton = ({
     title = "",
     onPress = () => {},

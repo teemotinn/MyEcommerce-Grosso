@@ -1,7 +1,16 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { colors } from '../global/colors';
 
-import { colors } from '../global/colors'
+/**
+  * Reusable card component that can be used in various parts of the application.
+  *
+  * @param {object} props - Component properties.
+  * @param {React.ReactNode} props.children - Content inside the card.
+  * @param {Array} props.additionalStyle - Additional styles to customize the card.
+  * @param {function} props.onPress - Callback function when card is pressed.
+  * @returns {JSX.Element} - Card element.
+  */
 
 export default function Card({
     children,

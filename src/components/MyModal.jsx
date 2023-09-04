@@ -1,9 +1,26 @@
-import React, { useState } from "react"
-import { Text, TouchableOpacity, View, StyleSheet, ScrollView } from "react-native"
-import Modal from "react-native-modal"
-import ProgressCircle from "./ProgressCircle"
-import { colors } from "../global/colors"
+import React, { useState } from "react";
+import { Text, TouchableOpacity, View, StyleSheet, ScrollView } from "react-native";
+import Modal from "react-native-modal";
+import ProgressCircle from "./ProgressCircle";
+import { colors } from "../global/colors";
 
+/**
+ * MyModal component for displaying a customizable modal.
+ *
+ * @param {object} props - Component props.
+ * @param {boolean} props.isLoading - Flag to indicate if the modal is in loading state.
+ * @param {boolean} props.isVisible - Flag to control the visibility of the modal.
+ * @param {string} props.title - The title of the modal.
+ * @param {string} props.mainButtonText - The text for the main button.
+ * @param {function} props.onMainButtonPress - Callback function for the main button press.
+ * @param {string} props.secondaryButtonText - The text for the secondary button.
+ * @param {function} props.onSecondaryButtonPress - Callback function for the secondary button press.
+ * @param {function} props.onModalHide - Callback function triggered when the modal is hidden.
+ * @param {function} props.onModalHideWithMainButton - Callback function triggered when the modal is hidden with the main button.
+ * @param {function} props.onModalHideWithSecondaryButton - Callback function triggered when the modal is hidden with the secondary button.
+ * @param {JSX.Element} props.children - Content to display within the modal.
+ * @returns {JSX.Element} - MyModal component.
+ */
 export default function MyModal({
   isLoading,
   isVisible,
@@ -22,7 +39,7 @@ export default function MyModal({
   const [isSecondaryButtonPressed, setIsSecondaryButtonPressed] = useState(false);
 
   const onModalHideProps = () => {
-    onModalHide?.()
+    onModalHide?.();
     if (isPrimaryButtonPressed) {
       setIsPrimaryButtonPressed(false);
       onModalHideWithMainButton?.();
@@ -81,7 +98,7 @@ export default function MyModal({
         )}
       </View>
     </Modal>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -140,4 +157,4 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoBold',
     color: colors.FONT,
   }
-})
+});

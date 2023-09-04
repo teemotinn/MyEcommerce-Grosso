@@ -1,11 +1,16 @@
-import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Card from "./Card";
+import { colors } from "../global/colors";
 
-import Card from "./Card"
-import { colors } from "../global/colors"
-
+/**
+ * OrderItem component for displaying order details.
+ *
+ * @param {object} props - Component props.
+ * @param {object} props.order - The order object to display.
+ * @returns {JSX.Element} - OrderItem component.
+ */
 const OrderItem = ({ order }) => {
-
     return (
         <Card additionalStyle={styles.additionalStylesCard}>
             <View style={styles.textContainer}>
