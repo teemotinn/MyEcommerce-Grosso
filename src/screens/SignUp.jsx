@@ -91,7 +91,12 @@ const SignUpScreen = ({ navigation }) => {
                     error={errorConfirmPassword}
                     isSecure={true}
                 />
-                <PrimaryButton onPress={onSubmit} title="Send" loading={result.isLoading} />
+                <PrimaryButton
+                    onPress={onSubmit}
+                    title="Send"
+                    loading={result.isLoading}
+                    containerStyle={styles.button}
+                />
                 <Text style={styles.sub}>Already have an account?</Text>
                 <Pressable onPress={() => navigation.navigate("Login")}>
                     <Text style={styles.subLink}>Login</Text>
@@ -128,8 +133,11 @@ const styles = StyleSheet.create({
         gap: 14,
     },
     title: {
-        fontSize: 22,
+        fontSize: 26,
         fontFamily: "NunitoBold",
+    },
+    button: {
+        width: '66%'
     },
     sub: {
         fontSize: 14,

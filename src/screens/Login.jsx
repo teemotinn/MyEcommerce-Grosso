@@ -93,6 +93,7 @@ const LoginScreen = ({ navigation }) => {
                     onPress={onSubmit}
                     title="Login"
                     loading={resultSignIn.isLoading}
+                    containerStyle={styles.button}
                 />
                 <Text style={styles.sub}>Not have an account?</Text>
                 <Pressable onPress={() => navigation.navigate("Signup")}>
@@ -129,8 +130,11 @@ const styles = StyleSheet.create({
         gap: 14,
     },
     title: {
-        fontSize: 22,
+        fontSize: 26,
         fontFamily: "NunitoBold",
+    },
+    button: {
+        width: '66%'
     },
     sub: {
         fontSize: 14,
