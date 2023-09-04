@@ -7,6 +7,7 @@ import Header from '../components/Header'
 
 import { usePostCartMutation } from '../services/shopServices'
 import { resetCart } from "../features/cart/cartSlice"
+
 import NotFoundMessage from '../components/NotFoundMessage'
 import PrimaryButton from '../components/PrimaryButton'
 import SecondaryButton from '../components/SecondaryButton'
@@ -21,26 +22,23 @@ const Cart = ({
   const [isDoneModalVisible, setIsDoneModalVisible] = useState(false)
   const { items: cartData, total, updatedAt } = useSelector(state => state.cartReducer.value)
   const dispatch = useDispatch()
-  const { localId: userId } = useSelector(state => state.userReducer.value)
+  const { localId } = useSelector(state => state.userReducer.value)
   const [triggerPostCart, { isSuccess, isLoading }] = usePostCartMutation()
 
   useEffect(() => {
-    if(isSuccess){
+    if (isSuccess) {
       dispatch(resetCart())
       setIsDoneModalVisible(true)
     }
   }, [isSuccess])
 
-  console.log('isLoading', isLoading)
   const onConfirm = () => {
-    triggerPostCart({ cartData, total, userId, updatedAt })
+    triggerPostCart({ cartData, total, localId, updatedAt })
   }
 
   onClear = () => {
     dispatch(resetCart())
   }
-
-  console.log(cartData);
 
   return (
     <View style={{ flex: 1 }}>
@@ -82,7 +80,7 @@ const Cart = ({
             />
             <SecondaryButton
               disabled={isLoading}
-              text={'Clear'}
+              title={'Clear'}
               onPress={onClear}
             />
           </View>

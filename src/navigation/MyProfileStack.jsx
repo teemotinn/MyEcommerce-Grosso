@@ -15,10 +15,42 @@ const MyProfileStack = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="My Profile" component={MyProfile} />
-            <Stack.Screen name="Image Selector" component={ImageSelector} />
-            <Stack.Screen name="List Address" component={ListAddress} />
-            <Stack.Screen name="Location Selector" component={LocationSelector} />
+            <Stack.Screen
+                name="My Profile"
+                component={MyProfile}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_right'
+                }}
+            />
+            <Stack.Screen
+                name="Image Selector"
+                component={ImageSelector}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_right'
+                }}
+            />
+            <Stack.Screen
+                name="List Address"
+                component={ListAddress}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_right'
+                }}
+            />
+            <Stack.Screen
+                name="Location Selector"
+                component={LocationSelector}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_right'
+                }}
+            />
         </Stack.Navigator>
     );
 };

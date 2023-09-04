@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Image, View, StyleSheet, Text, Alert, Linking } from "react-native";
+
 import * as ImagePicker from "expo-image-picker";
-import AddButton from "../components/AddButton";
-import { colors } from "../global/colors";
 import * as MediaLibrary from "expo-media-library";
+
 import { usePostProfileImageMutation } from "../services/shopServices";
+
 import { useDispatch, useSelector } from "react-redux";
 import { saveImage } from "../features/user/userSlice";
+
+import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
+import { MARGIN } from "../global/constants";
+import Header from "../components/Header";
 
 const ImageSelector = ({ navigation }) => {
     const [image, setImage] = useState(null);
@@ -22,16 +28,13 @@ const ImageSelector = ({ navigation }) => {
 
     const pickImage = async () => {
 
-        //Permission for camera
         const isCameraOk = await verifyCameraPermissions();
 
         if (isCameraOk) {
-            // No permissions request is necessary for launching the image library
             let result = await ImagePicker.launchCameraAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.All,
                 allowsEditing: true,
                 aspect: [1, 1],
-                //base64: true,
                 quality: 1,
             });
 
@@ -64,19 +67,18 @@ const ImageSelector = ({ navigation }) => {
 
     const confirmImage = async () => {
         try {
-            // Request device storage access permission
+
             const { status } = await MediaLibrary.requestPermissionsAsync();
             if (status === "granted") {
                 console.log("Only valid on emulators and physical devices");
-                // Save image to media library and create an asset
+
                 const response = await MediaLibrary.createAssetAsync(image);
-                console.log(response.uri);
-                //Save image link on profileImages remote location
+
                 triggerSaveImage({
                     image: response.uri,
                     localId: localId,
                 });
-                // Set image on redux state
+
                 dispatch(saveImage(response.uri));
             }
         } catch (error) {
@@ -86,21 +88,26 @@ const ImageSelector = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
-            {image ? (
-                <>
-                    <Image source={{ uri: image }} style={styles.image} />
-                    <AddButton title="Take another photo" onPress={pickImage} />
-                    <AddButton title="Confirm photo" onPress={confirmImage} />
-                </>
-            ) : (
-                <>
-                    <View style={styles.noPhotoContainer}>
-                        <Text>No photo to show...</Text>
-                    </View>
-                    <AddButton title="Take a photo" onPress={pickImage} />
-                </>
-            )}
+        <View style={{ flex: 1 }}>
+            <Header goBack={navigation.goBack} />
+            <View style={styles.container}>
+                {image ? (
+                    <>
+                        <Image source={{ uri: image }} style={styles.image} />
+                        <View style={styles.buttonsContainer}>
+                            <SecondaryButton title="Take another photo" onPress={pickImage} />
+                            <PrimaryButton containerStyle={styles.primaryButton} title="Confirm photo" onPress={confirmImage} />
+                        </View>
+                    </>
+                ) : (
+                    <>
+                        <View style={styles.noPhotoContainer}>
+                            <Text style={styles.noPhotoText}>No photo to show...</Text>
+                        </View>
+                        <PrimaryButton title="Take a photo" onPress={pickImage} />
+                    </>
+                )}
+            </View>
         </View>
     );
 };
@@ -111,21 +118,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         gap: 20,
-        marginTop: 20,
+        padding: MARGIN
     },
     image: {
-        width: 200,
-        height: 200,
+        width: 240,
+        height: 240,
+        borderRadius: 500,
     },
     noPhotoContainer: {
-        width: 200,
-        height: 200,
+        width: 240,
+        height: 240,
+        borderRadius: 500,
         borderWidth: 2,
-        borderColor: colors.red,
-        padding: 10,
         justifyContent: "center",
         alignItems: "center",
     },
+    noPhotoText: {
+        fontFamily: 'Nunito'
+    },
+    primaryButton: {
+        marginTop: 12
+    },
+    buttonsContainer: {
+        width: '100%'
+    }
 });

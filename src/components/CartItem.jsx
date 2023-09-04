@@ -1,11 +1,20 @@
 import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-
+import { useDispatch } from "react-redux"
+import { removeCartItem } from "../features/cart/cartSlice"
 import Card from "./Card"
 import { colors } from "../global/colors"
 
 const CartItem = ({ cartItem }) => {
+    const dispatch = useDispatch()
+
+    const onDeleteProduct = () => {
+        dispatch(removeCartItem({
+            ...cartItem
+        }))
+    }
+
     return (
         <Card additionalStyle={styles.additionalStylesCard}>
             <View style={styles.textContainer}>
@@ -13,7 +22,9 @@ const CartItem = ({ cartItem }) => {
                 <Text numberOfLines={1} style={styles.detailText}>{cartItem.brand}</Text>
                 <Text numberOfLines={1} style={styles.detailText}>${cartItem.price}</Text>
             </View>
-            <MaterialCommunityIcons name="trash-can-outline" size={24} color="black" />
+            <TouchableOpacity onPress={onDeleteProduct}>
+                <MaterialCommunityIcons name="trash-can-outline" size={24} color="black" />
+            </TouchableOpacity>
         </Card>
     );
 };

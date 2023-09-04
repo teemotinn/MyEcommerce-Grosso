@@ -20,6 +20,7 @@ export default function CategoryItem({
     return (
         <Card
             onPress={onSelectCategory}
+            additionalStyle={styles.card}
         >
             <Text style={styles.textCategory}>
                 {item}
@@ -29,8 +30,11 @@ export default function CategoryItem({
 }
 
 const styles = StyleSheet.create({
+    card: {
+        maxWidthWidth: 320,
+        width: '100%',
+    },
     textCategory: {
-        width: 180,
         fontSize: 18,
         fontFamily: 'Nunito'
     },

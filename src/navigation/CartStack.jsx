@@ -16,6 +16,11 @@ const CartStack = () => {
             <Stack.Screen
                 name='CartScreen'
                 component={Cart}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_right'
+                }}
             />
         </Stack.Navigator>
     )

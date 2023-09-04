@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { TouchableOpacity, StyleSheet, Animated } from 'react-native';
-import ProgressCircle from "../components/ProgressCircle";
-import { colors } from "../global/colors";
+import React, { useEffect, useState } from "react"
+import { TouchableOpacity, StyleSheet, Animated } from 'react-native'
+import ProgressCircle from "../components/ProgressCircle"
+import { colors } from "../global/colors"
 
 const SecondaryButton = ({
+    containerStyle,
     disabled,
     onPress,
-    text,
+    title,
     loading,
 }) => {
     const [textAnimation] = useState(new Animated.Value(0));
@@ -53,31 +54,32 @@ const SecondaryButton = ({
                 onPress?.();
             }}
             style={[
-                styles.primaryButton,
+                styles.button,
                 disabled && styles.disabledButtonDecoration,
+                containerStyle ?? []
             ]}
         >
             {loading &&
-                <ProgressCircle />
+                <ProgressCircle size={12} color={colors.FONT} />
             }
             <Animated.Text
                 numberOfLines={1}
                 style={[
-                    styles.primaryButtonText,
+                    styles.title,
                     disabled && styles.disabledTextDecoration,
                     { marginLeft: textMarginLeft },
                 ]}
             >
-                {text}
+                {title}
             </Animated.Text>
         </TouchableOpacity>
     );
 }
 
-export default SecondaryButton;
+export default SecondaryButton
 
 const styles = StyleSheet.create({
-    primaryButton: {
+    button: {
         alignSelf: 'center',
         width: '100%',
         flexDirection: 'row',
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 12,
     },
-    primaryButtonText: {
+    title: {
         fontFamily: 'NunitoBold',
         fontSize: 14,
         textAlign: 'center',

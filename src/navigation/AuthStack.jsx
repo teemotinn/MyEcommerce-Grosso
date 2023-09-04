@@ -14,8 +14,24 @@ const AuthStack = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="Signup" component={SignUpScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen
+                name="Signup"
+                component={SignUpScreen}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_bottom'
+                }}
+            />
+            <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_bottom'
+                }}
+            />
         </Stack.Navigator>
     );
 };

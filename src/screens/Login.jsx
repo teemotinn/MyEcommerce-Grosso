@@ -1,24 +1,25 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import InputForm from "../components/InputForm";
-import SubmitButton from "../components/SubmitButton";
-import { colors } from "../global/colors";
-import { useSignInMutation } from "../services/authServices";
-import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth";
-import { useDispatch } from "react-redux";
-import { setUser } from "../features/user/userSlice";
-import { insertSession } from "../SQLite";
+import { Pressable, StyleSheet, Text, View } from "react-native"
+import React, { useEffect, useState } from "react"
+import InputForm from "../components/InputForm"
+import SubmitButton from "../components/SubmitButton"
+import { colors } from "../global/colors"
+import { useSignInMutation } from "../services/authServices"
+import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth"
+import { useDispatch } from "react-redux"
+import { setUser } from "../features/user/userSlice"
+import { insertSession } from "../SQLite"
+import PrimaryButton from "../components/PrimaryButton"
 
 const LoginScreen = ({ navigation }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const [errorEmail, setErrorEmail] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
 
     const dispatch = useDispatch()
 
-    const [triggerSignIn, resultSignIn] = useSignInMutation();
+    const [triggerSignIn, resultSignIn] = useSignInMutation()
     const onSubmit = () => {
         try {
             const isValidVariableEmail = isValidEmail(email)
@@ -29,7 +30,7 @@ const LoginScreen = ({ navigation }) => {
                     email,
                     password,
                     returnSecureToken: true,
-                });
+                })
             }
 
             if (!isValidVariableEmail) setErrorEmail('Email is not correct')
@@ -38,23 +39,20 @@ const LoginScreen = ({ navigation }) => {
             else setErrorPassword('')
 
         } catch (err) {
-            console.log(err.message);
+            console.log(err.message)
         }
-    };
+    }
 
     useEffect(() => {
         (async () => {
             try {
                 if (resultSignIn.isSuccess) {
 
-                    //Insert session in SQLite database
                     const response = await insertSession({
                         idToken: resultSignIn.data.idToken,
                         localId: resultSignIn.data.localId,
                         email: resultSignIn.data.email,
                     })
-
-                    console.log(response)
 
                     dispatch(setUser({
                         email: resultSignIn.data.email,
@@ -68,7 +66,7 @@ const LoginScreen = ({ navigation }) => {
                     }))
                 }
             } catch (error) {
-                console.log(error.message);
+                console.log(error.message)
             }
         })()
     }, [resultSignIn])
@@ -76,7 +74,7 @@ const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
-                <Text style={styles.title}>Login to start</Text>
+                <Text style={styles.title}>Login to start!</Text>
                 <InputForm
                     label={"email"}
                     onChange={(email) => setEmail(email)}
@@ -88,17 +86,21 @@ const LoginScreen = ({ navigation }) => {
                     error={errorPassword}
                     isSecure={true}
                 />
-                <SubmitButton onPress={onSubmit} title="Send" />
+                <PrimaryButton
+                    onPress={onSubmit}
+                    title="Login"
+                    loading={resultSignIn.isLoading}
+                />
                 <Text style={styles.sub}>Not have an account?</Text>
                 <Pressable onPress={() => navigation.navigate("Signup")}>
                     <Text style={styles.subLink}>Sign up</Text>
                 </Pressable>
             </View>
         </View>
-    );
-};
+    )
+}
 
-export default LoginScreen;
+export default LoginScreen
 
 const styles = StyleSheet.create({
     main: {
@@ -112,21 +114,20 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: colors.lightPink,
-        gap: 15,
-        paddingVertical: 20,
-        borderRadius: 10,
+        gap: 14,
     },
     title: {
         fontSize: 22,
-        fontFamily: "Nunito",
+        fontFamily: "NunitoBold",
     },
     sub: {
         fontSize: 14,
-        color: "black",
+        color: colors.FONT,
+        fontFamily: 'Nunito'
     },
     subLink: {
         fontSize: 14,
-        color: "blue",
+        fontFamily: 'Nunito',
+        color: colors.LINK
     },
-});
+})

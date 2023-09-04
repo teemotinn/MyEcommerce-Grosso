@@ -1,28 +1,37 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import {
-    Button,
     Image,
     StyleSheet,
     Text,
     View,
     useWindowDimensions,
 } from "react-native"
+import { useFocusEffect } from "@react-navigation/native"
 
-import allProducts from "../data/products.json"
-import Header from "../components/Header"
 import { useDispatch, useSelector } from "react-redux"
 import { addCartItem } from "../features/cart/cartSlice"
+
+import { useGetProductByIdQuery } from "../services/shopServices"
+
+import Header from "../components/Header"
 import PrimaryButton from "../components/PrimaryButton"
+import ProgressCircle from "../components/ProgressCircle"
 
 const ItemDetail = ({
-    navigation,
-    route
+    navigation
 }) => {
     const selectedProductId = useSelector(state => state.shopReducer.value.selectedProductId)
 
     const dispatch = useDispatch()
 
-    const [product, setProduct] = useState(null);
+    const { data, isLoading, refetch } = useGetProductByIdQuery(selectedProductId)
+
+    const loadDataOnFocus = useCallback(() => {
+        refetch()
+    }, [refetch])
+
+    useFocusEffect(loadDataOnFocus)
+
     const [orientation, setOrientation] = useState("portrait");
     const { width, height } = useWindowDimensions();
 
@@ -31,16 +40,9 @@ const ItemDetail = ({
         else setOrientation("portrait");
     }, [width, height]);
 
-    useEffect(() => {
-        const productSelected = allProducts.find(
-            (product) => product.id === selectedProductId
-        );
-        setProduct(productSelected);
-    }, [selectedProductId]);
-
     const onAddCart = () => {
         dispatch(addCartItem({
-            ...product,
+            ...data,
             quantity: 1
         }))
     }
@@ -48,8 +50,11 @@ const ItemDetail = ({
     return (
         <View style={{ flex: 1 }}>
             <Header goBack={navigation.goBack} />
-            {product ? (
-                <View
+            {isLoading
+                ? <View style={styles.centeredItems}>
+                    <ProgressCircle />
+                </View>
+                : <View
                     style={
                         orientation === "portrait"
                             ? styles.mainContainer
@@ -58,23 +63,23 @@ const ItemDetail = ({
                 >
                     <View style={styles.infoContainer}>
                         <Image
-                            source={{ uri: product.images[0] }}
+                            source={{ uri: data.images[0] }}
                             style={styles.image}
                             resizeMode="cover"
                         />
                         <View style={styles.textContainer}>
-                            <Text style={styles.titleText}>{product.title}</Text>
-                            <Text style={styles.descriptionText}>{product.description}</Text>
-                            <Text style={styles.price}>${product.price}</Text>
+                            <Text style={styles.titleText}>{data.title}</Text>
+                            <Text style={styles.descriptionText}>{data.description}</Text>
+                            <Text style={styles.price}>${data.price}</Text>
                         </View>
 
                     </View>
                     <PrimaryButton
-                        title='Add cart'
+                        title='Add to cart'
                         onPress={onAddCart}
                     />
                 </View>
-            ) : null}
+            }
         </View>
     );
 };
@@ -95,6 +100,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: "center",
         padding: 16,
+    },
+    centeredItems: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     image: {
         width: 300,

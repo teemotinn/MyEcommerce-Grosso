@@ -27,7 +27,6 @@ export default function Navigator() {
         (async () => {
             try {
                 const session = await getSession()
-                console.log(session);
                 if (session?.rows.length) {
                     const user = session.rows._array[0]
                     dispatch(setUser(user))
@@ -118,7 +117,6 @@ export default function Navigator() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.BACKGROUND,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
     tabBar: {

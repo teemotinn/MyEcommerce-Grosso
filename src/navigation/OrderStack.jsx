@@ -13,7 +13,15 @@ const OrderStack = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="OrderScreen" component={Order} />
+            <Stack.Screen
+                name="OrderScreen"
+                component={Order}
+                options={{
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'slide_from_right'
+                }}
+            />
 
         </Stack.Navigator>
     );

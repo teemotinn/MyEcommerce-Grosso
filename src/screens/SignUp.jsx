@@ -1,12 +1,16 @@
-import { Pressable, StyleSheet, Text, View } from "react-native"
 import React, { useEffect, useState } from "react"
+import { Pressable, StyleSheet, Text, View } from "react-native"
+
+import { useDispatch } from "react-redux"
+import { setUser } from "../features/user/userSlice"
+
+import { useSignUpMutation } from "../services/authServices"
+import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth"
+
 import InputForm from "../components/InputForm"
 import SubmitButton from "../components/SubmitButton"
 import { colors } from "../global/colors"
-import { useSignUpMutation } from "../services/authServices"
-import { useDispatch } from "react-redux"
-import { setUser } from "../features/user/userSlice"
-import { isAtLeastSixCharacters, isValidEmail } from "../validations/auth"
+import PrimaryButton from "../components/PrimaryButton"
 
 const SignUpScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -66,7 +70,7 @@ const SignUpScreen = ({ navigation }) => {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
-                <Text style={styles.title}>Signup</Text>
+                <Text style={styles.title}>Signup!</Text>
                 <InputForm label={"email"} onChange={setEmail} error={errorMail} />
                 <InputForm
                     label={"password"}
@@ -80,7 +84,7 @@ const SignUpScreen = ({ navigation }) => {
                     error={errorConfirmPassword}
                     isSecure={true}
                 />
-                <SubmitButton onPress={onSubmit} title="Send" />
+                <PrimaryButton onPress={onSubmit} title="Send" />
                 <Text style={styles.sub}>Already have an account?</Text>
                 <Pressable onPress={() => navigation.navigate("Login")}>
                     <Text style={styles.subLink}>Login</Text>
@@ -104,23 +108,20 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: colors.SECONDARY,
-        gap: 15,
-        paddingVertical: 20,
-        borderRadius: 10,
+        gap: 14,
     },
     title: {
         fontSize: 22,
-        fontFamily: "Nunito",
+        fontFamily: "NunitoBold",
     },
     sub: {
         fontSize: 14,
-        fontFamily: "Nunito",
-        color: "black",
+        color: colors.FONT,
+        fontFamily: 'Nunito'
     },
     subLink: {
         fontSize: 14,
-        fontFamily: "Nunito",
-        color: "blue",
+        fontFamily: 'Nunito',
+        color: colors.LINK
     },
 });

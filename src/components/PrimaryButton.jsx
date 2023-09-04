@@ -54,7 +54,7 @@ const PrimaryButton = ({
                 onPress?.();
             }}
             style={[
-                styles.primaryButton,
+                styles.button,
                 disabled && styles.disabledButtonDecoration,
                 containerStyle ?? []
             ]}
@@ -65,7 +65,7 @@ const PrimaryButton = ({
             <Animated.Text
                 numberOfLines={1}
                 style={[
-                    styles.primaryButtonText,
+                    styles.title,
                     disabled && styles.disabledTextDecoration,
                     { marginLeft: textMarginLeft },
                 ]}
@@ -79,7 +79,7 @@ const PrimaryButton = ({
 export default PrimaryButton;
 
 const styles = StyleSheet.create({
-    primaryButton: {
+    button: {
         alignSelf: 'center',
         width: '100%',
         flexDirection: 'row',
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 12,
     },
-    primaryButtonText: {
+    title: {
         fontFamily: 'NunitoBold',
         fontSize: 14,
         textAlign: 'center',

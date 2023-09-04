@@ -23,8 +23,6 @@ const styles = StyleSheet.create({
     container: {
         paddingVertical: 6,
         paddingHorizontal: 12,
-        maxWidth: 480,
-        alignSelf: 'stretch',
         backgroundColor: colors.SECONDARY,
         shadowColor: "#000",
         borderRadius: 8,

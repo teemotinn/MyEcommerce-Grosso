@@ -33,8 +33,15 @@ export const cartSlice = createSlice({
         },
 
         removeCartItem: (state, action) => {
-            //Logic to remove item
+            const itemIdToRemove = action.payload.id;
+
+            state.value.items = state.value.items.filter(item => item.id !== itemIdToRemove);
+            state.value.total = state.value.items.reduce(
+                (acc, currentItem) => acc += currentItem.price * currentItem.quantity,
+                0
+            )
         },
+        
         resetCart: (state) => {
             state.value = {
                 user: "",
