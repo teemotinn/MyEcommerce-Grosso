@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text } from 'react-native';
 import Card from './Card';
 import { setSelectedProductId } from '../features/shop/shopSlice';
 import { useDispatch } from 'react-redux';
+import { colors } from '../global/colors';
 
 /**
  * ProductItem component for displaying product information.
@@ -29,6 +30,7 @@ export default function ProductItem({
             onPress={onSelectProduct}
         >
             <Text
+                numberOfLines={1}
                 style={styles.productTitle}>
                 {item.title}
             </Text>
@@ -44,7 +46,8 @@ export default function ProductItem({
 const styles = StyleSheet.create({
     productTitle: {
         width: '60%',
-        fontFamily: 'Nunito'
+        fontFamily: 'NunitoBold',
+        color: colors.FONT
     },
     image: {
         height: '100%',

@@ -58,11 +58,11 @@ const SignUpScreen = ({ navigation }) => {
                 triggerSignUp(request)
             }
 
-            if (!isValidVariableEmail) setErrorMail('Email is not correct')
+            if (!isValidVariableEmail) setErrorMail('Email is not correct.')
             else setErrorMail('')
-            if (!isCorrectPassword) setErrorPassword('Password must be at least 6 characters')
+            if (!isCorrectPassword) setErrorPassword('Password must be at least 6 characters.')
             else setErrorPassword('')
-            if (!isRepeatedPasswordCorrect) setErrorConfirmPassword('Passwords must match')
+            if (!isRepeatedPasswordCorrect) setErrorConfirmPassword('Passwords must match.')
             else setErrorConfirmPassword('')
 
         } catch (err) {

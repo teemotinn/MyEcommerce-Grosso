@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '100%',
         flexDirection: 'row',
-        borderColor: colors.PRIMARY,
+        borderColor: colors.BUTTON_BORDER,
         borderWidth: 1,
         borderRadius: 100,
         maxWidth: 360,

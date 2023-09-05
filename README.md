@@ -38,7 +38,7 @@ React Navigation simplifies navigation in the app, enabling easy management of s
 
 ## Configuration
 
-1. Clone the repository:
+1. In the folder of your choice, clone the repository:
 
    ```bash
    git clone https://github.com/teemotinn/MyEcommerce-Grosso.git
@@ -57,8 +57,10 @@ React Navigation simplifies navigation in the app, enabling easy management of s
    ```bash
    npm start
 
-4.1. Run on Android/iOS Emulator or Physical Device:
+5. Run on Android Emulator or Physical Device:
    ```bash
    npx react-native run-android
+
+6. Run on iOS Emulator or Physical Device:
    ```bash
    npx react-native run-ios

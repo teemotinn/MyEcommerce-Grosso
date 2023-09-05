@@ -37,9 +37,9 @@ const LoginScreen = ({ navigation }) => {
                 })
             }
 
-            if (!isValidVariableEmail) setErrorEmail('Email is not correct')
+            if (!isValidVariableEmail) setErrorEmail('Email is not correct.')
             else setErrorEmail('')
-            if (!isCorrectPassword) setErrorPassword('Password must be at least 6 characters')
+            if (!isCorrectPassword) setErrorPassword('Password must be at least 6 characters.')
             else setErrorPassword('')
 
         } catch (err) {

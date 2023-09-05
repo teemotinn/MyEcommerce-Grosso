@@ -14,10 +14,10 @@ const OrderItem = ({ order }) => {
     return (
         <Card additionalStyle={styles.additionalStylesCard}>
             <View style={styles.textContainer}>
-                <Text style={styles.titleText}>
+                <Text numberOfLines={1} style={styles.titleText}>
                     {order.updatedAt.toLocaleString()}
                 </Text>
-                <Text style={styles.detailText}>${order.total}</Text>
+                <Text numberOfLines={1} style={styles.detailText}>${order.total}</Text>
             </View>
         </Card>
     );

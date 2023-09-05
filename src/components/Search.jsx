@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
         padding: 12,
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        backgroundColor: colors.TERTIARY
     },
     toolsContainer: {
         flexDirection: 'row',
@@ -59,11 +60,11 @@ const styles = StyleSheet.create({
         paddingLeft: 8,
     },
     input: {
+        color: colors.FONT,
+        fontFamily: 'NunitoBold',
         flex: 1,
         padding: 8,
-        fontSize: 18,
-        backgroundColor: colors.SECONDARY,
-        borderRadius: 10,
+        fontSize: 16
     },
     error: {
         fontFamily: 'NunitoBold',

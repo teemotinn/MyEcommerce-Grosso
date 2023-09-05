@@ -39,7 +39,7 @@ export default function Navigator() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar style="light" translucent />
+            <StatusBar translucent />
             <NavigationContainer>
                 {email
                     ? <Tab.Navigator
@@ -56,7 +56,11 @@ export default function Navigator() {
                                 tabBarIcon: ({ focused }) => {
                                     return (
                                         <View>
-                                            <MaterialCommunityIcons name="store" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                            <MaterialCommunityIcons
+                                                name="store"
+                                                size={24}
+                                                color={focused ? 'black' : colors.PRIMARY}
+                                            />
                                         </View>
                                     )
                                 }
@@ -69,7 +73,11 @@ export default function Navigator() {
                                 tabBarIcon: ({ focused }) => {
                                     return (
                                         <View>
-                                            <MaterialCommunityIcons name="cart" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                            <MaterialCommunityIcons
+                                                name="cart"
+                                                size={24} 
+                                                color={focused ? 'black' : colors.PRIMARY}
+                                            />
                                         </View>
                                     )
                                 }
@@ -82,7 +90,10 @@ export default function Navigator() {
                                 tabBarIcon: ({ focused }) => {
                                     return (
                                         <View>
-                                            <MaterialCommunityIcons name="format-list-bulleted" size={24} color={focused ? 'black' : colors.SECONDARY} />
+                                            <MaterialCommunityIcons
+                                                name="format-list-bulleted"
+                                                size={24} color={focused ? 'black' : colors.PRIMARY}
+                                            />
                                         </View>
                                     )
                                 }
@@ -98,7 +109,7 @@ export default function Navigator() {
                                             <MaterialCommunityIcons
                                                 name="account"
                                                 size={24}
-                                                color={focused ? 'black' : colors.SECONDARY}
+                                                color={focused ? 'black' : colors.PRIMARY}
                                             />
                                         </View>
                                     );
@@ -120,7 +131,7 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
     tabBar: {
-        backgroundColor: colors.PRIMARY,
+        backgroundColor: colors.BACKGROUND,
         shadowColor: 'black',
         elevation: 4,
         height: '10%'

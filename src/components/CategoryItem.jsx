@@ -4,6 +4,7 @@ import { StyleSheet, Text } from 'react-native';
 import Card from './Card';
 import { useDispatch } from 'react-redux';
 import { setCategorySelected } from '../features/shop/shopSlice';
+import { capitalizeWords } from '../global/functions';
 
 /**
  * CategoryItem component displays a category item.
@@ -31,7 +32,7 @@ export default function CategoryItem({
             additionalStyle={styles.card}
         >
             <Text style={styles.textCategory}>
-                {item}
+                {capitalizeWords(item)}
             </Text>
         </Card>
     );

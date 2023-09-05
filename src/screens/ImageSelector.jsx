@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, View, StyleSheet, Text, Alert, Linking } from "react-native";
+import { Image, View, StyleSheet, Text, Linking } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
@@ -14,8 +14,12 @@ import SecondaryButton from "../components/SecondaryButton";
 import { MARGIN } from "../global/constants";
 import Header from "../components/Header";
 
+import MyModal from "../components/MyModal";
+import ModalMessage from "../components/ModalMessage";
+
 const ImageSelector = ({ navigation }) => {
     const [image, setImage] = useState(null);
+    const [isPermissionModalVisible, setIsPermissionModalVisible] = useState(false);
 
     const [triggerSaveImage, resultSaveImage] = usePostProfileImageMutation();
     const dispatch = useDispatch();
@@ -23,11 +27,13 @@ const ImageSelector = ({ navigation }) => {
 
     const verifyCameraPermissions = async () => {
         const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+        if (!granted) {
+            showPermissionModal();
+        }
         return granted;
     };
 
     const pickImage = async () => {
-
         const isCameraOk = await verifyCameraPermissions();
 
         if (isCameraOk) {
@@ -41,37 +47,15 @@ const ImageSelector = ({ navigation }) => {
             if (!result.canceled) {
                 setImage(result.assets[0].uri);
             }
+        } else {
+            showPermissionModal();
         }
-        else {
-            Alert.alert(
-                'Camera Permission Required',
-                'Camera permission is required to continue.',
-                [
-                    {
-                        text: 'Cancel',
-                        onPress: () => console.log('Cancel Pressed'),
-                        style: 'cancel',
-                    },
-                    {
-                        text: 'Go to Settings',
-                        onPress: () => {
-                            Linking.openSettings()
-                        },
-                    },
-                ],
-                { cancelable: false }
-            );
-        }
-
     };
 
     const confirmImage = async () => {
         try {
-
             const { status } = await MediaLibrary.requestPermissionsAsync();
             if (status === "granted") {
-                console.log("Only valid on emulators and physical devices");
-
                 const response = await MediaLibrary.createAssetAsync(image);
 
                 triggerSaveImage({
@@ -85,6 +69,10 @@ const ImageSelector = ({ navigation }) => {
             console.log(error);
         }
         navigation.goBack();
+    };
+
+    const showPermissionModal = () => {
+        setIsPermissionModalVisible(true);
     };
 
     return (
@@ -108,6 +96,24 @@ const ImageSelector = ({ navigation }) => {
                     </>
                 )}
             </View>
+
+            <MyModal
+                isVisible={isPermissionModalVisible}
+                title="Camera permission is required"
+                mainButtonText="Go to Settings"
+                onMainButtonPress={() => {
+                    setIsPermissionModalVisible(false);
+                }}
+                secondaryButtonText="Cancel"
+                onSecondaryButtonPress={() => {
+                    setIsPermissionModalVisible(false);
+                }}
+                onModalHideWithMainButton={() => Linking.openSettings()}
+            >
+                <ModalMessage>
+                    You must go to Settings and enable it to continue.
+                </ModalMessage>
+            </MyModal>
         </View>
     );
 };
@@ -120,7 +126,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         gap: 20,
-        padding: MARGIN
+        padding: MARGIN,
     },
     image: {
         width: 240,
@@ -136,12 +142,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     noPhotoText: {
-        fontFamily: 'Nunito'
+        fontFamily: 'Nunito',
     },
     primaryButton: {
-        marginTop: 12
+        marginTop: 12,
     },
     buttonsContainer: {
-        width: '100%'
-    }
+        width: '100%',
+    },
 });
