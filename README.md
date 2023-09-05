@@ -54,11 +54,3 @@ React Navigation simplifies navigation in the app, enabling easy management of s
 4. Start the Development Server: 
    ```bash
    npm start
-
-5. Run on Android Emulator or Physical Device:
-   ```bash
-   npx react-native run-android
-
-6. Run on iOS Emulator or Physical Device:
-   ```bash
-   npx react-native run-ios
