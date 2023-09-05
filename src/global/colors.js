@@ -3,6 +3,7 @@ export const colors = {
     SECONDARY: '#8BE2AB',
     TERTIARY: '#BDFFD7',
     BACKGROUND: '#FFFFFF',
+    CARD_BACKGROUND:'#FFFFFF',
     FONT: '#000000',
     ALERT_FONT: '#A30000',
     ERROR_FONT: '#A30000',

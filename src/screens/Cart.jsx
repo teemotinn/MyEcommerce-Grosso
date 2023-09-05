@@ -15,6 +15,7 @@ import MyModal from '../components/MyModal'
 import ModalMessage from '../components/ModalMessage'
 import { useState } from 'react'
 import { MARGIN } from '../global/constants'
+import { colors } from '../global/colors'
 
 const Cart = ({
   navigation
@@ -113,7 +114,8 @@ const styles = StyleSheet.create({
   totalContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: MARGIN
+    padding: MARGIN,
+    backgroundColor: colors.BACKGROUND
   },
   totalText: {
     fontFamily: 'NunitoBold',

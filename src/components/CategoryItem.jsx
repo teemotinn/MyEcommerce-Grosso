@@ -41,7 +41,7 @@ export default function CategoryItem({
 const styles = StyleSheet.create({
     card: {
         maxWidthWidth: 320,
-        width: '100%',
+        width: '100%'
     },
     textCategory: {
         fontSize: 18,

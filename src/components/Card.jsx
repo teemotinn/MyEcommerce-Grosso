@@ -30,9 +30,8 @@ export default function Card({
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 6,
-        paddingHorizontal: 12,
-        backgroundColor: colors.SECONDARY,
+        padding: 12,
+        backgroundColor: colors.CARD_BACKGROUND,
         shadowColor: "#000",
         borderRadius: 8,
         marginBottom: 8,
