@@ -34,7 +34,7 @@ React Navigation simplifies navigation in the app, enabling easy management of s
 - Node.js
 - npm (Node Package Manager)
 - Expo CLI
-- Firebase Project (for the backend)
+- GIT
 
 ## Configuration
 
@@ -42,8 +42,6 @@ React Navigation simplifies navigation in the app, enabling easy management of s
 
    ```bash
    git clone https://github.com/teemotinn/MyEcommerce-Grosso.git
-
-   cd MyEcommerce-Grosso
 
 2. Navigate to the Project Directory: 
    ```bash
@@ -56,11 +54,3 @@ React Navigation simplifies navigation in the app, enabling easy management of s
 4. Start the Development Server: 
    ```bash
    npm start
-
-5. Run on Android Emulator or Physical Device:
-   ```bash
-   npx react-native run-android
-
-6. Run on iOS Emulator or Physical Device:
-   ```bash
-   npx react-native run-ios
