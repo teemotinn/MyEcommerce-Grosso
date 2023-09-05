@@ -43,8 +43,6 @@ React Navigation simplifies navigation in the app, enabling easy management of s
    ```bash
    git clone https://github.com/teemotinn/MyEcommerce-Grosso.git
 
-   cd MyEcommerce-Grosso
-
 2. Navigate to the Project Directory: 
    ```bash
    cd MyEcommerce-Grosso
