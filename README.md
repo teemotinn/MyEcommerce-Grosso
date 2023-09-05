@@ -56,6 +56,7 @@ React Navigation simplifies navigation in the app, enabling easy management of s
    npm start
 
 ## Screenshots
-![FotoJet](https://github.com/teemotinn/MyEcommerce-Grosso/assets/137322680/0564bde6-666e-4ed8-9f12-2f6fd43b6dd0)
-![FotoJet (1)](https://github.com/teemotinn/MyEcommerce-Grosso/assets/137322680/0d06cbbf-0fa8-4046-8680-bf88551f58ef)
+![FotoJet](https://github.com/teemotinn/MyEcommerce-Grosso/assets/137322680/afb7b195-daf0-48c5-b945-26ceccd3d07c)
+![FotoJet (1)](https://github.com/teemotinn/MyEcommerce-Grosso/assets/137322680/09eb2aeb-9f86-436f-97d0-62f7248ecc40)
+
 
