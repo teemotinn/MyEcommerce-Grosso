@@ -15,6 +15,20 @@ MyEcommerce-Grosso is an e-commerce application developed in React Native, for a
 - Order history.
 - Integration with authentication services and data storage.
 
+## Technologies Used
+
+### React Native
+React Native allows for cross-platform development, reducing development time and effort by enabling the creation of both Android and iOS apps using a single codebase.
+
+### Redux
+Redux is used for state management, providing a centralized store for managing app data. It simplifies data sharing between components and helps maintain a predictable application state.
+
+### Firebase
+Firebase offers a range of services, including authentication, real-time database, and cloud functions. It provides a reliable and scalable backend for the app, making it easy to implement user authentication and data storage.
+
+### React Navigation
+React Navigation simplifies navigation in the app, enabling easy management of screens and navigation stacks. It ensures a smooth user experience by allowing seamless transitions between screens.
+
 ## Prerequisites
 
 - Node.js
@@ -28,3 +42,23 @@ MyEcommerce-Grosso is an e-commerce application developed in React Native, for a
 
    ```bash
    git clone https://github.com/teemotinn/MyEcommerce-Grosso.git
+
+   cd MyEcommerce-Grosso
+
+2. Navigate to the Project Directory: 
+   ```bash
+   cd MyEcommerce-Grosso
+
+3. Install Dependencies: 
+   ```bash
+   npm install
+
+4. Start the Development Server: 
+   ```bash
+   npm start
+
+4.1. Run on Android/iOS Emulator or Physical Device:
+   ```bash
+   npx react-native run-android
+   ```bash
+   npx react-native run-ios
