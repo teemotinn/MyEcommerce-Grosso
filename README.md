@@ -54,3 +54,8 @@ React Navigation simplifies navigation in the app, enabling easy management of s
 4. Start the Development Server: 
    ```bash
    npm start
+
+## Screenshots
+![FotoJet](https://github.com/teemotinn/MyEcommerce-Grosso/assets/137322680/0564bde6-666e-4ed8-9f12-2f6fd43b6dd0)
+![FotoJet (1)](https://github.com/teemotinn/MyEcommerce-Grosso/assets/137322680/0d06cbbf-0fa8-4046-8680-bf88551f58ef)
+
