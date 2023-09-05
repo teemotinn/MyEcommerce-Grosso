@@ -34,7 +34,7 @@ React Navigation simplifies navigation in the app, enabling easy management of s
 - Node.js
 - npm (Node Package Manager)
 - Expo CLI
-- Firebase Project (for the backend)
+- GIT
 
 ## Configuration
 
