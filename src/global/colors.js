@@ -8,7 +8,7 @@ export const colors = {
     ERROR_FONT: '#A30000',
     SUCCESS_BACKGROUND: '#4BB543',
     LINK: 'blue',
-    DISABLED_FONT: '#747474',
+    DISABLED_FONT: '#424242',
     BUTTON_BORDER: '#000000',
     DISABLED_BACKGROUND: '#ADADAD'
 }
